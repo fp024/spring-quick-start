@@ -13,7 +13,7 @@ import com.springbook.biz.common.JDBCUtil;
 
 /**
  * DAO (Data Access Object)
- * @author E5-2670x2
+ * @author fp024
  */
 @Repository("boardDAO")
 public class BoardDAO {
