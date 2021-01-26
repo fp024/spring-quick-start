@@ -21,7 +21,7 @@ public class UserServiceClient {
 		if (user == null) {
 			System.out.println("로그인 실패");
 		} else {
-			System.out.println(user.getName() + "님 환영합니다.");
+			System.out.println(user.getName() + " 로그인 환영합니다.");
 		}
 
 		// 4. Spring 컨테이너를 종료한다.

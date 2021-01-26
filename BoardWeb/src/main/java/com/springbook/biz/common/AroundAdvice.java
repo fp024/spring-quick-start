@@ -1,17 +1,23 @@
 package com.springbook.biz.common;
 
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.springframework.util.StopWatch;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class AroundAdvice {
 	public Object aroundLog(ProceedingJoinPoint pjp) throws Throwable {
-		logger.info("[BEFORE]: 비즈니스 메서드 수행 전에 처리할 내용...");
+		String method = pjp.getSignature().getName();
+		
+		StopWatch stopWatch = new StopWatch();
+		stopWatch.start();
 
 		Object object = pjp.proceed();
+		
+		stopWatch.stop();
 
-		logger.info("[AFTER]: 비즈니스 메서드 수행 후에 처리할 내용...");
+		logger.info("{}() 메서드 수행에 걸린 시간 : {}(ms)초", method, stopWatch.getTotalTimeMillis());
 
 		return object;
 	}
