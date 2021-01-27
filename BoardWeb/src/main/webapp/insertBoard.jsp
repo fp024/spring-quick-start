@@ -24,10 +24,10 @@
 </head>
 <body>
 	<h1 style="text-align: center">글 등록</h1>
-	<p style="text-align: center;"><a href="logout_proc.jsp">Log-out</a></p>
+	<p style="text-align: center;"><a href="logout.do">Log-out</a></p>
 	<hr>
 	
-	<form action="insertBoard_proc.jsp" method="post">
+	<form action="insertBoard.do" method="post">
  		<table border="1" style="margin: auto">
 	        <caption>새글 등록 양식</caption>
 	        <tr>

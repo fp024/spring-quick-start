@@ -3,4 +3,26 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
+	<!-- 
+		Servlet 3.0 의 신규 사항으로 선언이나 매핑 항목들을 web.xml에다 적을 필요는 없다고 한다.
+		https://docs.oracle.com/middleware/1221/wls/WBAPP/configureservlet.htm#WBAPP707
+	-->
+	<!-- 
+		Using Annotations for Servlets, Filters and Listeners 
+		– demonstrates how to define Web application components solely from annotations, 
+		such as @WebServlet, @WebListener, and @WebFilter, 
+		no longer requiring definition and mapping entries within the web.xml descriptor.
+	 -->
+	
+	<!-- 
+	<servlet>
+		<servlet-name>action</servlet-name>
+		<servlet-class>com.springbook.view.controller.DispatcherServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>action</servlet-name>
+		<uri-pattern>*.do</uri-pattern>
+	</servlet-mapping>
+	 -->
+
 </web-app>

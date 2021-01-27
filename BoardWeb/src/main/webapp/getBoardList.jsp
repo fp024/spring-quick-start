@@ -4,14 +4,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
-	// 1. 사용자 입력 정보 추출(검색 기능은 나중에 구현)
-	// 2. DB 연동 처리
-	BoardVO vo = new BoardVO();
-	BoardDAO boardDAO = new BoardDAO();
-	List<BoardVO> boardList = boardDAO.getBoardList(vo);
-
-	// 3. 응답 화면 구성
-
+	// 세션에 저장된 글 목록을 꺼낸다.
+	List<BoardVO> boardList = (List) session.getAttribute("boardList");
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -34,11 +28,11 @@
 </head>
 <body>
 	<h1>글 목록</h1>
-	<h3><span style="color: red;">테스트</span>님 환영합니다...<a href="logout_proc.jsp">Log-out</a></h3>
+	<h3><span style="color: red;">테스트</span>님 환영합니다...<a href="logout.do">Log-out</a></h3>
 	
 	<!-- 검색시작 -->
 	<div style="margin: auto; display: block">
-    <form action="getBoardList.jsp" method="post">
+    <form action="getBoardList.do" method="post">
         <select name="searchCondition">
             <option value="TITLE">제목</option>
             <option value="CONTENT">내용</option>
@@ -69,7 +63,7 @@
 		<% for(BoardVO board : boardList) { %>
 	    <tr>
 	        <td><%= board.getSeq() %></td>
-	        <td><a href="getBoard.jsp?seq=<%= board.getSeq() %>"><%= board.getTitle() %></a></td>
+	        <td><a href="getBoard.do?seq=<%= board.getSeq() %>"><%= board.getTitle() %></a></td>
 	        <td><%= board.getWriter() %></td>
 	        <td><%= board.getRegDate() %></td>
 	        <td><%= board.getCnt() %></td>

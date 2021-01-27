@@ -25,7 +25,7 @@
 	</head>
 	<body>
 		<h1 style="text-align: center;">로그인</h1>
-		<form action="login_proc.jsp" method="post">
+		<form action="login.do" method="post">
 		    <table border="1">
 		        <caption>로그인 폼</caption>
 		        <colgroup>

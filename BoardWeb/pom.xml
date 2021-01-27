@@ -7,8 +7,9 @@
 	<artifactId>board_web</artifactId>
 	<name>BoardWeb</name>
 	<packaging>war</packaging>
-	<version>1.0.0-BUILD-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
 		<org.springframework-version>4.3.30.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.8.14</org.aspectj-version>
