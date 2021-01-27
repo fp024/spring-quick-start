@@ -1,11 +1,23 @@
 package com.springbook.biz.common;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterThrowing;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@Service
+@Aspect
 public class AfterThrowingAdvice {
+	@Pointcut("execution(* com.springbook.biz..*Impl.*(..))")	
+	public void allPointcut() {
+		// 포인트 컷 선언 메서드는 참조 메서드로만 지정.. 메서드 내용을 지정하지 않음.
+	}
+	
+	@AfterThrowing(pointcut = "allPointcut()", throwing = "exceptObj")
 	public void exceptionLog(JoinPoint jp, Exception exceptObj) {
 
 		String method = jp.getSignature().getName();
