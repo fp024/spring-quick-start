@@ -33,6 +33,19 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		
+		<!-- Java 8 환경에서 최신 4.x 버전이 호환가능함. -->
+		<dependency>
+        	<groupId>com.zaxxer</groupId>
+        	<artifactId>HikariCP</artifactId>
+        	<version>4.0.1</version>
+    	</dependency>
 
 		<!-- AspectJ -->
 		<dependency>

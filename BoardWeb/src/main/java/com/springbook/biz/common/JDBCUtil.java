@@ -24,7 +24,7 @@ public class JDBCUtil {
 			return DriverManager.getConnection("jdbc:h2:tcp://localhost/~/spring_quick_start", "sa", "");  // h2 기본 사용시 sa에 대한 사용자명을 반드시 넣어야함.
 			/*
 			 	유저를 새로 만들 수도 있음.
-				create user if not exists board password 'board' admin;
+				CREATE USER IF NOT EXISTS board PASSWORD 'board' ADMIN;
 			 */
 		} catch (Exception e) {
 			e.getStackTrace();
