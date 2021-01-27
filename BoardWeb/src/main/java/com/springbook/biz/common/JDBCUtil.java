@@ -19,7 +19,9 @@ public class JDBCUtil {
 
 	public static Connection getConnection() {
 		try {
-			// Class.forName("org.h2.Driver"); // JDBC 4.0 (JDK6)에서는 classpath 에서 이용가능한 드라이버들을 자동으로 로드해준다고 한다.
+			// JDBC 4.0 (JDK6)에서는 classpath 에서 이용가능한 드라이버들을 자동으로 로드해준다고 한다.
+			// 그런데, Model 1 방식 jsp로 확인할 때는 아래 코드가 필요함.
+			Class.forName("org.h2.Driver"); 
 			// DB생성은 윈도우 퀵런치 H2아이콘 오른 쪽 메뉴로 생성가능
 			return DriverManager.getConnection("jdbc:h2:tcp://localhost/~/spring_quick_start", "sa", "");  // h2 기본 사용시 sa에 대한 사용자명을 반드시 넣어야함.
 			/*
