@@ -1,14 +1,13 @@
 package com.springbook.biz.common;
 
 import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-@Aspect
+//@Aspect
 public class AfterAdvice {
 	@After(value = "PointcutCommon.allPointcut()")
 	public void finallyLog() {

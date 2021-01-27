@@ -2,7 +2,6 @@ package com.springbook.biz.common;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StopWatch;
 
@@ -10,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-@Aspect
+//@Aspect
 public class AroundAdvice {
 	@Around(value = "PointcutCommon.allPointcut()")
 	public Object aroundLog(ProceedingJoinPoint pjp) throws Throwable {

@@ -2,7 +2,6 @@ package com.springbook.biz.common;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Service;
 
 import com.springbook.biz.user.UserVO;
@@ -11,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-@Aspect
+//@Aspect
 public class AfterReturningAdvice {
 	@AfterReturning(pointcut = "PointcutCommon.getPointcut()", returning = "returnObj")
 	public void afterLog(JoinPoint jp, Object returnObj) {

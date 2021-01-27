@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 /**
  * page 117
  * 
- * @author E5-2670x2
+ * @author fp024
  * 
  * (참고) 임베디드 모드에서 다른 툴에서 이미 접속되어있으면 중복 접속 허용이 안되는 것 같다.
  */

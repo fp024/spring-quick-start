@@ -2,14 +2,13 @@ package com.springbook.biz.common;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-@Aspect
+//@Aspect
 public class AfterThrowingAdvice {
 	@AfterThrowing(pointcut = "PointcutCommon.allPointcut()", throwing = "exceptObj")
 	public void exceptionLog(JoinPoint jp, Exception exceptObj) {

@@ -9,7 +9,7 @@ import lombok.ToString;
 /**
  * VO(Value Object)
  * 
- * @author E5-2670x2
+ * @author fp024
  */
 @Getter
 @Setter

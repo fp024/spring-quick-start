@@ -20,6 +20,11 @@ public class BoardDAOSpring {
 	private static final String BOARD_INSERT = "INSERT INTO BOARD (seq, title, writer, content) VALUES("
 											 + "(SELECT NVL(MAX(Seq),0)+1 FROM board) "
 											 + ",?,?,?)";
+	
+	private static final String BOARD_INSERT2 = "INSERT INTO BOARD (seq, title, writer, content) VALUES("
+											 + "?"
+											 + ",?,?,?)";
+	
 	private static final String BOARD_UPDATE = "UPDATE board "
 											 + "   SET title=? "
 											 + "       content=? "
@@ -49,7 +54,8 @@ public class BoardDAOSpring {
 	/** 글등록 */
 	public void insertBoard(BoardVO vo) {
 		logger.info("===> Spring JDBC로 insertBoard() 기능 처리");
-		jdbcTemplate.update(BOARD_INSERT, vo.getTitle(), vo.getWriter(), vo.getContent());
+		//jdbcTemplate.update(BOARD_INSERT, vo.getTitle(), vo.getWriter(), vo.getContent());
+		jdbcTemplate.update(BOARD_INSERT2, vo.getSeq(), vo.getTitle(), vo.getWriter(), vo.getContent());
 	}
 
 	/** 글 수정 */
