@@ -2,10 +2,14 @@ package com.springbook.biz.board;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 public class BoardServiceClient {
+	private static final Logger LOGGER = LoggerFactory.getLogger(BoardServiceClient.class);
+	
 	public static void main(String[] args) {
 		// 1. Spring 컨테이너를 구동한다.
 		AbstractApplicationContext container = new GenericXmlApplicationContext("applicationContext.xml");
@@ -24,7 +28,7 @@ public class BoardServiceClient {
 
 		// 4. 글 목록 검색 기능 테스트
 		List<BoardVO> boardList = boardService.getBoardList(vo);
-		boardList.forEach(b -> System.out.println("---> " + b));
+		boardList.forEach(b -> LOGGER.info("---> {}", b));
 
 		// 5. Spring 컨테이너 종료
 		container.close();

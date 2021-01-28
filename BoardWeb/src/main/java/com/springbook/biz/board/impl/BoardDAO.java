@@ -11,10 +11,13 @@ import org.springframework.stereotype.Repository;
 import com.springbook.biz.board.BoardVO;
 import com.springbook.biz.common.JDBCUtil;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * DAO (Data Access Object)
  * @author fp024
  */
+@Slf4j
 @Repository("boardDAO")
 public class BoardDAO {
 	/** JDBC 관련 변수 */
@@ -48,7 +51,7 @@ public class BoardDAO {
 	 */
 	/** 글등록 */
 	public void insertBoard(BoardVO vo) {
-		System.out.println("===> JDBC로 insertBoard() 기능 처리");
+		logger.info("===> JDBC로 insertBoard() 기능 처리");
 		
 		try {
 			conn = JDBCUtil.getConnection();
@@ -67,7 +70,7 @@ public class BoardDAO {
 	
 	/** 글 수정 */
 	public void updateBoard(BoardVO vo) {
-		System.out.println("===> JDBC로 updateBoard() 기능 처리");
+		logger.info("===> JDBC로 updateBoard() 기능 처리");
 		
 		try {
 			conn = JDBCUtil.getConnection();
@@ -86,7 +89,7 @@ public class BoardDAO {
 	
 	/** 글 삭제 */
 	public void deleteBoard(BoardVO vo) {
-		System.out.println("===> JDBC로 deleteBoard() 기능 처리");
+		logger.info("===> JDBC로 deleteBoard() 기능 처리");
 		
 		try {
 			conn = JDBCUtil.getConnection();
@@ -103,7 +106,7 @@ public class BoardDAO {
 
 	/** 글 상세 조회 */
 	public BoardVO getBoard(BoardVO vo) {
-		System.out.println("===> JDBC로 getBoard() 기능 처리");
+		logger.info("===> JDBC로 getBoard() 기능 처리");
 
 		try {
 			conn = JDBCUtil.getConnection();
@@ -133,7 +136,7 @@ public class BoardDAO {
 	
 	/** 글 목록 조회 */
 	public List<BoardVO> getBoardList(BoardVO vo) {
-		System.out.println("===> JDBC로 getBoardList() 기능 처리");
+		logger.info("===> JDBC로 getBoardList() 기능 처리");
 		List<BoardVO> boardList = new ArrayList<>(); 
 
 		try {

@@ -9,10 +9,13 @@ import org.springframework.stereotype.Repository;
 import com.springbook.biz.common.JDBCUtil;
 import com.springbook.biz.user.UserVO;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 
  * @author fp024
  */
+@Slf4j
 @Repository
 public class UserDAO {
 	/** JDBC 관련 변수 */
@@ -26,7 +29,7 @@ public class UserDAO {
 	/** CRUD 기능의 메서드 구현 */
 	public UserVO getUser(UserVO vo) {
 		try {
-			System.out.println("===> JDBC로 getUser() 기능 처리");
+			logger.info("===> JDBC로 getUser() 기능 처리");
 			conn = JDBCUtil.getConnection();
 			stmt = conn.prepareStatement(USER_GET);
 			stmt.setString(1, vo.getId());
