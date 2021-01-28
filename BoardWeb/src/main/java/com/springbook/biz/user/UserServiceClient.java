@@ -1,10 +1,15 @@
 package com.springbook.biz.user;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 
 public class UserServiceClient {
+	private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceClient.class);
+	
 	public static void main(String[] args) {
+		
 		// 1. Spring 컨테이너를 구동한다.
 		AbstractApplicationContext container = new GenericXmlApplicationContext("applicationContext.xml");
 
@@ -19,9 +24,9 @@ public class UserServiceClient {
 		UserVO user = userService.getUser(vo);
 
 		if (user == null) {
-			System.out.println("로그인 실패");
+			LOGGER.info("로그인 실패");
 		} else {
-			System.out.println(user.getName() + " 로그인 환영합니다.");
+			LOGGER.info("{} 로그인 환영합니다.", user.getName());
 		}
 
 		// 4. Spring 컨테이너를 종료한다.
