@@ -56,7 +56,7 @@
     	</table>
 	</form>
 	<div style="text-align: center">
-    	<a href="getBoardList.jsp">[글 목록]</a>
+    	<a href="getBoardList.do">[글 목록]</a>
 	</div>
 </body>
 </html>
