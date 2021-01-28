@@ -117,7 +117,7 @@ public class BoardDAO {
 				board.setTitle(rs.getString("TITLE"));
 				board.setWriter(rs.getString("WRITER"));
 				board.setContent(rs.getString("CONTENT"));
-				board.setRegDate(rs.getDate("REGDATE")); // java.sql.Date는 java.util.Date의 서브타입이다.
+				board.setRegDate(rs.getTimestamp("REGDATE")); // java.sql.Date는 java.util.Date의 서브타입이다.
 				board.setCnt(rs.getInt("CNT"));
 				return board;
 			}
@@ -147,7 +147,7 @@ public class BoardDAO {
 				board.setTitle(rs.getString("TITLE"));
 				board.setWriter(rs.getString("WRITER"));
 				board.setContent(rs.getString("CONTENT"));
-				board.setRegDate(rs.getDate("REGDATE")); // java.sql.Date는 java.util.Date의 서브타입이다.
+				board.setRegDate(rs.getTimestamp("REGDATE")); // java.sql.Date는 java.util.Date의 서브타입이다.
 				board.setCnt(rs.getInt("CNT"));
 				boardList.add(board);
 			}

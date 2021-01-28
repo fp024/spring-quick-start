@@ -1,12 +1,6 @@
-<%@ page import="java.util.List" %>
-<%@ page import="com.springbook.biz.board.impl.BoardDAO" %>
-<%@ page import="com.springbook.biz.board.BoardVO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-<%
-	// 세션에 저장된 글 목록을 꺼낸다.
-	List<BoardVO> boardList = (List) session.getAttribute("boardList");
-%>
+<%@ taglib prefix="c" 	uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -60,15 +54,15 @@
 	        <th scope="col" style="background-color: orange;">조회수</th>
 	    </tr>
 	
-		<% for(BoardVO board : boardList) { %>
+		<c:forEach var="board" items="${boardList}">
 	    <tr>
-	        <td><%= board.getSeq() %></td>
-	        <td><a href="getBoard.do?seq=<%= board.getSeq() %>"><%= board.getTitle() %></a></td>
-	        <td><%= board.getWriter() %></td>
-	        <td><%= board.getRegDate() %></td>
-	        <td><%= board.getCnt() %></td>
+	        <td>${board.seq}</td>
+	        <td><a href="getBoard.do?seq=${board.seq}">${board.title}</a></td>
+	        <td>${board.writer}</td>
+	        <td><fmt:formatDate value="${board.regDate}" pattern="yyy-MM-dd HH:mm"/></td>
+	        <td>${board.cnt}</td>
 	    </tr>
-	    <% } %>
+	    </c:forEach>
 	    
 	</table>
 	<br>

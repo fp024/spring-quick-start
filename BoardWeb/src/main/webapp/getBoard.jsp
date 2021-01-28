@@ -1,11 +1,6 @@
-<%@ page import="com.springbook.biz.board.impl.BoardDAO" %>
-<%@ page import="com.springbook.biz.board.BoardVO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-<%
-	// 세션에 저장된 게시글 정보를 꺼낸다.
-	BoardVO board = (BoardVO) session.getAttribute("board");
-%>
+<%@ taglib prefix="c" 	uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -45,27 +40,27 @@
 	        <tr>
 	            <th scope="row">제목</th>
 	            <td>
-	                <input name="seq" type="hidden" value="<%= board.getSeq() %>">
-	                <input name="title" type="text" value="<%= board.getTitle() %>">
+	                <input name="seq" type="hidden" value="${board.seq}">
+	                <input name="title" type="text" value="${board.title}">
 	            </td>
 	        </tr>
 	        <tr>
 	            <th scope="row">작성자</th>
-	            <td><%= board.getWriter() %></td>
+	            <td>${board.writer}</td>
 	        </tr>
 	        <tr>
 	            <th scope="row">내용</th>
 	            <td>
-	                <textarea name="content" rows="10" cols="60"><%= board.getContent() %></textarea>
+	                <textarea name="content" rows="10" cols="60">${board.content}</textarea>
 	            </td>
 	        </tr>
 	        <tr>
 	            <th scope="row">등록일</th>
-	            <td><%= board.getRegDate() %></td>
+	            <td><fmt:formatDate value="${board.regDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 	        </tr>
 	        <tr>
 	            <th scope="row">조회수</th>
-	            <td><%= board.getCnt() %></td>
+	            <td>${board.cnt}</td>
 	        </tr>
 	        <tr>
 	            <td colspan="2">
@@ -76,7 +71,7 @@
 	</form>
 	<div style="text-align: center">
 	    <a href="insertBoard.jsp">[글 등록]</a>
-	    <a href="deleteBoard.do?seq=<%=board.getSeq() %>">[글 삭제]</a>
+	    <a href="deleteBoard.do?seq=${board.seq}">[글 삭제]</a>
 	    <a href="getBoardList.do">[글 목록]</a>
 	</div>
 </body>
