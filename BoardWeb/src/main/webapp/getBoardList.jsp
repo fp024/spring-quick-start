@@ -28,8 +28,9 @@
 	<div style="margin: auto; display: block">
     <form action="getBoardList.do" method="post">
         <select name="searchCondition">
-            <option value="TITLE">제목</option>
-            <option value="CONTENT">내용</option>
+        	<c:forEach var="condition" items="${conditionMap}">
+            <option value="${condition.value}">${condition.key}</option>
+            </c:forEach>
         </select>
         <input name="searchKeyword" type="text">
         <button type="submit">검색</button>
