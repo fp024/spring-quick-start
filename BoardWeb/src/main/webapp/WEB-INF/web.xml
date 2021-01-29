@@ -11,6 +11,8 @@
 		Spring 에서도 web.xml 설정 없이 가능하니 추후 시도해보자.
 		(참조) https://offbyone.tistory.com/215
 	-->
+	<display-name>Spring Quick Start Board Web Example</display-name>
+	
 	<filter>
 		<filter-name>characterEncoding</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
