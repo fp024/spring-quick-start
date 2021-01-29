@@ -1,6 +1,6 @@
 package com.springbook.view.user;
 
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,10 +23,12 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
-	public String login(UserVO vo, UserDAO userDAO, HttpServletResponse response) {
+	public String login(UserVO vo, UserDAO userDAO, HttpSession session) {
 		logger.info("로그인 처리");
-
-		if (userDAO.getUser(vo) != null) {
+			
+		UserVO user = userDAO.getUser(vo);
+		if (user != null) {
+			session.setAttribute("userName", user.getName());
 			return "getBoardList.do";
 		} else {
 			return " login.jsp";

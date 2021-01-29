@@ -3,7 +3,9 @@ package com.springbook.view.board;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.springbook.biz.board.BoardVO;
@@ -16,39 +18,42 @@ import lombok.extern.slf4j.Slf4j;
 public class BoardController {
 	@RequestMapping("/insertBoard.do")
 	public String insertBoard(BoardVO vo, BoardDAO boardDAO) {
-		logger.info("글 등록 처리");
 		boardDAO.insertBoard(vo);
 		return "getBoardList.do";
 	}
 	
 	@RequestMapping("/updateBoard.do")
 	public String updateBoard(BoardVO vo, BoardDAO boardDAO) {
-		logger.info("글 수정 처리");
 		boardDAO.updateBoard(vo);
 		return "getBoardList.do";
 	}
 	
 	@RequestMapping("/deleteBoard.do")
 	public String deleteBoard(BoardVO vo, BoardDAO boardDAO) {
-		logger.info("글 삭제 처리");
 		boardDAO.deleteBoard(vo);
 		return "getBoardList.do";
 	}
 	
 	@RequestMapping("/getBoardList.do")
-	public ModelAndView handleRequest(BoardVO vo, BoardDAO boardDAO, ModelAndView mav) {
-		logger.info("글 목록 검색 처리");
+	public String getBoardList(
+			@RequestParam(name="searchCondition", defaultValue = "TITLE", required = false)
+			String searchCondition,
+			@RequestParam(name="searchKeyword", defaultValue = "", required = false)
+			String searchKeyword, 
+			BoardVO vo, BoardDAO boardDAO, Model model) {
+
+		
+		logger.info("검색 조건: {}", searchCondition);
+		logger.info("검색 단어: {}", searchKeyword);
+		
 		List<BoardVO> boardList = boardDAO.getBoardList(vo);
-		mav.addObject("boardList", boardList);	// Model 정보 저장
-		mav.setViewName("getBoardList.jsp");	// View 정보 저장
-		return mav;
+		model.addAttribute("boardList", boardList);
+		return "getBoardList.jsp";
 	}
 	
 	@RequestMapping("/getBoard.do")
-	public ModelAndView getBoard(BoardVO vo, BoardDAO boardDAO, ModelAndView mav) {
-		logger.info("글 상세 조회 처리");
-		mav.addObject("board", boardDAO.getBoard(vo));  // Model 정보 저장
-		mav.setViewName("getBoard.jsp");				// View 정보 저장 
-		return mav;
+	public String getBoard(BoardVO vo, BoardDAO boardDAO, Model model) {
+		model.addAttribute("board", boardDAO.getBoard(vo));  // Model 정보 저장
+		return "getBoard.jsp";		// View 이름 리턴 
 	}
 }

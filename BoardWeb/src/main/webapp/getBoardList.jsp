@@ -22,7 +22,7 @@
 </head>
 <body>
 	<h1>글 목록</h1>
-	<h3><span style="color: red;">테스트</span>님 환영합니다...<a href="logout.do">Log-out</a></h3>
+	<h3><span style="color: red;">${userName}</span>님 환영합니다...<a href="logout.do">Log-out</a></h3>
 	
 	<!-- 검색시작 -->
 	<div style="margin: auto; display: block">
