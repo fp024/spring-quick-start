@@ -35,13 +35,13 @@
 		        <tr>
 		            <th scope="row">아이디</th>
 		            <td>
-		                <input name="id" type="text" size="10">
+		                <input name="id" type="text" size="10" value="${userVO.id }">
 		            </td>
 		        </tr>
 		        <tr>
 		            <th scope="row">비밀번호</th>
 		            <td>
-		                <input name="password" type="password" size="10">
+		                <input name="password" type="password" size="10" value="${userVO.password }">
 		            </td>
 		        </tr>
 		        <tr>

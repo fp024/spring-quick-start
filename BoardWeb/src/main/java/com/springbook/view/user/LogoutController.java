@@ -1,23 +1,20 @@
 package com.springbook.view.user;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class LogoutController implements Controller {
-	@Override
-	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
+@Controller
+public class LogoutController  {
+	@RequestMapping("/logout.do")
+	public String logout(HttpSession session) {
 		logger.info("로그아웃 처리");
-		// 1. 브라우저와 연결된 세션 객체를 강제 종료한다.
-		request.getSession().invalidate();
-
-		// 2. 화면 네비게이션
-		return new ModelAndView("redirect:login.jsp");
+		session.invalidate();
+		return "login.jsp";
 	}
 
 }
