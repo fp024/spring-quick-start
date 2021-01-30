@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.springbook.biz.board.BoardService;
 import com.springbook.biz.board.BoardVO;
 import com.springbook.biz.board.impl.BoardDAO;
 
@@ -20,6 +22,10 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @SessionAttributes("board")
 public class BoardController {
+	@Autowired
+	private BoardService boardService;
+	
+	
 	@ModelAttribute("conditionMap")
 	public Map<String, String> searchConditionMap() {
 		Map<String, String> conditionMap = new LinkedHashMap<>();
@@ -29,8 +35,8 @@ public class BoardController {
 	}
 
 	@RequestMapping("/insertBoard.do")
-	public String insertBoard(BoardVO vo, BoardDAO boardDAO) {
-		boardDAO.insertBoard(vo);
+	public String insertBoard(BoardVO vo) {
+		boardService.insertBoard(vo);
 		return "getBoardList.do";
 	}
 	
@@ -42,8 +48,8 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/deleteBoard.do")
-	public String deleteBoard(BoardVO vo, BoardDAO boardDAO) {
-		boardDAO.deleteBoard(vo);
+	public String deleteBoard(BoardVO vo) {
+		boardService.deleteBoard(vo);
 		return "getBoardList.do";
 	}
 	
@@ -53,20 +59,20 @@ public class BoardController {
 			String searchCondition,
 			@RequestParam(name="searchKeyword", defaultValue = "", required = false)
 			String searchKeyword, 
-			BoardVO vo, BoardDAO boardDAO, Model model) {
+			BoardVO vo, Model model) {
 
 		
 		logger.info("검색 조건: {}", searchCondition);
 		logger.info("검색 단어: {}", searchKeyword);
 		
-		List<BoardVO> boardList = boardDAO.getBoardList(vo);
+		List<BoardVO> boardList = boardService.getBoardList(vo);
 		model.addAttribute("boardList", boardList);
 		return "getBoardList.jsp";
 	}
 	
 	@RequestMapping("/getBoard.do")
-	public String getBoard(BoardVO vo, BoardDAO boardDAO, Model model) {
-		model.addAttribute("board", boardDAO.getBoard(vo));  // Model 정보 저장
+	public String getBoard(BoardVO vo, Model model) {
+		model.addAttribute("board", boardService.getBoard(vo));  // Model 정보 저장
 		return "getBoard.jsp";		// View 이름 리턴 
 	}
 }

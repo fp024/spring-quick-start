@@ -12,6 +12,23 @@
 		(참조) https://offbyone.tistory.com/215
 	-->
 	<display-name>Spring Quick Start Board Web Example</display-name>
+
+	<!-- 
+		The context-param element contains the declaration of a web application's servlet context 
+	 	initialization parameters.
+	 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
+	
+	<listener>
+		<!-- 
+			The listener-class element declares a class in the application must be registered as a web application 
+ 			listener bean. The value is the fully qualified classname of the listener class.
+		 -->
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
 	
 	<filter>
 		<filter-name>characterEncoding</filter-name>
