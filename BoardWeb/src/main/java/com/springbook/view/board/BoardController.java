@@ -30,8 +30,8 @@ public class BoardController {
 	@ModelAttribute("conditionMap")
 	public Map<String, String> searchConditionMap() {
 		Map<String, String> conditionMap = new LinkedHashMap<>();
-		conditionMap.put("제목", "TITLE");
-		conditionMap.put("내용", "CONTENT");
+		conditionMap.put("message.board.list.search.condition.title", "TITLE");
+		conditionMap.put("message.board.list.search.condition.content", "CONTENT");
 		return conditionMap;
 	}
 

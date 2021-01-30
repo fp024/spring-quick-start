@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="ko">
 	<head>
 		<meta charset="UTF-8">
-		<title>로그인</title>
+		<title><spring:message code="message.user.login.title"/></title>
 		<style type="text/css">
 		        table {
 		            border-spacing: 0;
@@ -24,29 +25,33 @@
 		</style>
 	</head>
 	<body>
-		<h1 style="text-align: center;">로그인</h1>
+		<h1 style="text-align: center;"><spring:message code="message.user.login.title"/></h1>
+		<p style="text-align: center;">
+			<a href="login.do?lang=en">[<spring:message code="message.user.login.language.en"/>]</a>
+			<a href="login.do?lang=ko">[<spring:message code="message.user.login.language.ko"/>]</a>
+		</p>
 		<form action="login.do" method="post">
 		    <table border="1">
-		        <caption>로그인 폼</caption>
+		        <caption></caption>
 		        <colgroup>
 		            <col style="width: 100px">
 		            <col style="width: 100px">
 		        </colgroup>
 		        <tr>
-		            <th scope="row">아이디</th>
+		            <th scope="row"><spring:message code="message.user.login.id"/></th>
 		            <td>
 		                <input name="id" type="text" size="10" value="${userVO.id }">
 		            </td>
 		        </tr>
 		        <tr>
-		            <th scope="row">비밀번호</th>
+		            <th scope="row"><spring:message code="message.user.login.password"/></th>
 		            <td>
 		                <input name="password" type="password" size="10" value="${userVO.password }">
 		            </td>
 		        </tr>
 		        <tr>
 		            <td colspan="2">
-		                <input type="submit" value="로그인" style="display:block; margin:auto">
+		                <input type="submit" value="<spring:message code="message.user.login.loginBtn"/>" style="display:block; margin:auto">
 		            </td>
 		        </tr>
 		    </table>
