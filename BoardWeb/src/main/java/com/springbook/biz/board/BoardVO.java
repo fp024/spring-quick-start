@@ -2,9 +2,12 @@ package com.springbook.biz.board;
 
 import java.util.Date;
 
-import org.springframework.web.multipart.MultipartFile;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlTransient;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -17,16 +20,28 @@ import lombok.ToString;
  */
 @Getter
 @Setter
-@JsonIgnoreProperties(value = {"searchCondition", "searchKeyword", "uploadFile"})
+@XmlAccessorType(XmlAccessType.FIELD)
 @ToString
 public class BoardVO {
+	@XmlAttribute
 	private int seq;
+	
 	private String title;
+	
 	private String writer;
+	
 	private String content;
+	
 	private Date regDate;
+	
 	private int cnt;
+	
+	@XmlTransient
 	private String searchCondition;
+	
+	@XmlTransient
 	private String searchKeyword;
+	
+	@XmlTransient
 	private MultipartFile uploadFile;	
 }
