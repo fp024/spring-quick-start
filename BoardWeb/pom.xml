@@ -68,6 +68,17 @@
 		  <version>30.1-jre</version>
 		</dependency>
 
+		<!-- 
+			https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload 
+			https://dist.apache.org/repos/dist/release/commons/fileupload/RELEASE-NOTES.txt
+		-->
+		<dependency>
+		    <groupId>commons-fileupload</groupId>
+		    <artifactId>commons-fileupload</artifactId>
+		    <version>1.4</version>
+		</dependency>
+
+
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>

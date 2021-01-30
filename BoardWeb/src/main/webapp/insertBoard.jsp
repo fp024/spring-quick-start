@@ -27,7 +27,7 @@
 	<p style="text-align: center;"><a href="logout.do">Log-out</a></p>
 	<hr>
 	
-	<form action="insertBoard.do" method="post">
+	<form action="insertBoard.do" method="post" enctype="multipart/form-data">
  		<table border="1" style="margin: auto">
 	        <caption>새글 등록 양식</caption>
 	        <tr>
@@ -46,6 +46,12 @@
 	            <th scope="row">내용</th>
 	            <td>
 	                <textarea name="content" rows="10" cols="50"></textarea>
+	            </td>
+	        </tr>
+	        <tr>
+	            <th scope="row">업로드</th>
+	            <td>
+	                <input type="file" name="uploadFile">
 	            </td>
 	        </tr>
 	        <tr>

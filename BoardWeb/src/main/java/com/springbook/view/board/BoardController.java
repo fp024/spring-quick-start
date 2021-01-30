@@ -1,5 +1,7 @@
 package com.springbook.view.board;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,8 +36,14 @@ public class BoardController {
 	}
 
 	@RequestMapping("/insertBoard.do")
-	public String insertBoard(BoardVO vo) {
+	public String insertBoard(BoardVO vo) throws IOException {
 		boardService.insertBoard(vo);
+
+		if (!vo.getUploadFile().isEmpty()) {
+			String filename = vo.getUploadFile().getOriginalFilename();
+			vo.getUploadFile().transferTo(new File("D:/Temp/BoardWeb/" + filename));
+		}
+
 		return "getBoardList.do";
 	}
 
