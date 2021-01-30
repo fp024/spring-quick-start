@@ -41,9 +41,15 @@ public class BoardDAO {
 								   + "  FROM board"
 								   + " WHERE seq=?";
 	
-	private final String BOARD_LIST = "SELECT * "
-			   					    + "  FROM board "
-			   					    + "ORDER BY seq DESC ";
+	private final String BOARD_LIST_T = "SELECT * "
+			   					      + "  FROM board "
+			   					      + " WHERE title LIKE '%' || ? || '%' "
+			   					      + " ORDER BY seq DESC ";
+
+	private final String BOARD_LIST_C = "SELECT * "
+								      + "  FROM board "
+								      + " WHERE content LIKE '%' || ? || '%' "
+								      + " ORDER BY seq DESC ";
 	
 	
 	/**
@@ -140,8 +146,15 @@ public class BoardDAO {
 		List<BoardVO> boardList = new ArrayList<>(); 
 
 		try {
+
 			conn = JDBCUtil.getConnection();
-			stmt = conn.prepareStatement(BOARD_LIST);
+
+			if ("TITLE".equals(vo.getSearchCondition())) {
+				stmt = conn.prepareStatement(BOARD_LIST_T);
+			} else if ("CONTENT".equals(vo.getSearchCondition())) {
+				stmt = conn.prepareStatement(BOARD_LIST_C);
+			}
+			stmt.setString(1, vo.getSearchKeyword());
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {

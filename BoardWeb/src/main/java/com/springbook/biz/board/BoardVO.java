@@ -21,4 +21,6 @@ public class BoardVO {
 	private String content;
 	private Date regDate;
 	private int cnt;
+	private String searchCondition;
+	private String searchKeyword;
 }
