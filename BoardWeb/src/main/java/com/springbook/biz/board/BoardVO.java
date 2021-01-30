@@ -4,6 +4,8 @@ import java.util.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -15,6 +17,7 @@ import lombok.ToString;
  */
 @Getter
 @Setter
+@JsonIgnoreProperties(value = {"searchCondition", "searchKeyword", "uploadFile"})
 @ToString
 public class BoardVO {
 	private int seq;
@@ -25,5 +28,5 @@ public class BoardVO {
 	private int cnt;
 	private String searchCondition;
 	private String searchKeyword;
-	private MultipartFile uploadFile;
+	private MultipartFile uploadFile;	
 }
