@@ -2,67 +2,28 @@ package org.fp024.mybatistest.board;
 
 import java.util.Date;
 
-/**
- * myBatis Generator 자동생성 도메인 모델
- */
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
 public class BoardVO {
-    private Integer seq;
+	private Integer seq;
 
-    private String title;
+	private String title;
 
-    private String writer;
+	private String writer;
 
-    private String content;
+	private String content;
 
-    private Date regDate;
+	private Date regDate;
 
-    private Integer cnt;
+	private Integer cnt;
 
-    public Integer getSeq() {
-        return seq;
-    }
+	private String searchCondition;
 
-    public void setSeq(Integer seq) {
-        this.seq = seq;
-    }
+	private String searchKeyword;
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getWriter() {
-        return writer;
-    }
-
-    public void setWriter(String writer) {
-        this.writer = writer;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public Date getRegDate() {
-        return regDate;
-    }
-
-    public void setRegDate(Date regDate) {
-        this.regDate = regDate;
-    }
-
-    public Integer getCnt() {
-        return cnt;
-    }
-
-    public void setCnt(Integer cnt) {
-        this.cnt = cnt;
-    }
 }
