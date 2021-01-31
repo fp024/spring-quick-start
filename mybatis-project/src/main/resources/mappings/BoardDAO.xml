@@ -20,10 +20,24 @@
      , cnt
 	</sql>
 	
+	<!-- 
+		selectKey에서 order="BEFORE" 를 생략하면 AFTER로 실행되는 것으로 보임. 그러면 null입력되어 오류남...
+	 -->
 	<insert id="insertBoard" parameterType="board">
-		INSERT INTO board (seq, title, writer, content )
-		VALUES ( (SELECT NVL(MAX(seq), 0) + 1 FROM board)
-			  , #{title}, #{writer}, #{content} )
+		<selectKey  keyProperty="seq" resultType="java.lang.Integer" order="BEFORE">
+			SELECT (NVL(MAX(seq), 0) + 1) AS seq FROM board
+		</selectKey>
+		INSERT INTO board (
+			  seq
+			, title
+			, writer
+			, content 
+		) VALUES (
+			#{seq}
+		  , #{title}
+		  , #{writer}
+		  , #{content} 
+		)
 	</insert>
 
 	<delete id="deleteBoard" parameterType="java.lang.Integer">
@@ -47,9 +61,11 @@
 		 WHERE seq = #{seq}
 	</select>
 	<select id="getBoardList" resultMap="BaseResultMap">
-		select <include refid="allColumns" />
+		<![CDATA[
+		SELECT <include refid="allColumns" />
 		  FROM board
 		 WHERE title LIKE '%' || #{searchKeyword} || '%'
 		 ORDER BY seq DESC
+		]]>
 	</select>
 </mapper>
