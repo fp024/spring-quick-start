@@ -14,6 +14,7 @@
 		<org.springframework-version>4.3.30.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.8.14</org.aspectj-version>
 		<org.slf4j-version>1.7.30</org.slf4j-version>
+		<org.mybatis-version>3.5.6</org.mybatis-version>
 	</properties>
 	<dependencies>
 		<!-- Spring -->
@@ -47,6 +48,22 @@
         	<artifactId>HikariCP</artifactId>
         	<version>4.0.1</version>
     	</dependency>
+
+
+		<!-- myBatis -->
+		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis -->
+		<dependency>
+		    <groupId>org.mybatis</groupId>
+		    <artifactId>mybatis</artifactId>
+		    <version>${org.mybatis-version}</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.mybatis/mybatis-spring -->
+		<dependency>
+		    <groupId>org.mybatis</groupId>
+		    <artifactId>mybatis-spring</artifactId>
+		    <version>2.0.6</version>
+		</dependency>
 
 		<!-- AspectJ -->
 		<dependency>

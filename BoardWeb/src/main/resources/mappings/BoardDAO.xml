@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- myBatis Generator 자동생성 메퍼 XML 을 책 예제에 맞게 수정 -->
+<mapper namespace="com.springbook.biz.board.impl.BoardDAOMybatis">
+	<resultMap id="BaseResultMap" type="board">
+		<id 	column="seq" 		jdbcType="DECIMAL" 		property="seq" />
+		<result column="title" 		jdbcType="VARCHAR" 		property="title" />
+		<result column="writer" 	jdbcType="VARCHAR" 		property="writer" />
+		<result column="content" 	jdbcType="VARCHAR" 		property="content" />
+		<result column="regdate" 	jdbcType="TIMESTAMP" 	property="regDate" />
+		<result column="cnt" 		jdbcType="DECIMAL" 		property="cnt" />
+	</resultMap>
+	
+	<sql id="allColumns">
+		seq
+     , title
+     , writer
+     , content
+     , regdate
+     , cnt
+	</sql>
+	
+	<!-- 
+		selectKey에서 order="BEFORE" 를 생략하면 AFTER로 실행되는 것으로 보임. 그러면 null입력되어 오류남...
+	 -->
+	<insert id="insertBoard" parameterType="board">
+		<selectKey  keyProperty="seq" resultType="java.lang.Integer" order="BEFORE">
+			SELECT (NVL(MAX(seq), 0) + 1) AS seq FROM board
+		</selectKey>
+		INSERT INTO board (
+			  seq
+			, title
+			, writer
+			, content 
+		) VALUES (
+			#{seq}
+		  , #{title}
+		  , #{writer}
+		  , #{content} 
+		)
+	</insert>
+
+	<delete id="deleteBoard" parameterType="board">
+		DELETE
+		  FROM board
+		 WHERE seq = #{seq}
+	</delete>
+
+	<update id="updateBoard" parameterType="board">
+		UPDATE board
+		   SET title = #{title}
+		     , writer = #{writer}
+		     , content = #{content}
+		     , regdate = #{regDate}
+		     , cnt = #{cnt}
+		 WHERE seq = #{seq}
+	</update>
+	<select id="getBoard" parameterType="board" resultMap="BaseResultMap">
+		SELECT <include refid="allColumns" />
+		  FROM BOARD
+		 WHERE seq = #{seq}
+	</select>
+	
+	
+	<!-- (참고) include 같은 태그를 내부에 사용한 상태에서 외부를 CDATA로 감싸면 당연히 오류남..ㅠㅠ -->
+	<select id="getBoardList" resultMap="BaseResultMap">
+		SELECT <include refid="allColumns" />
+		  FROM board
+		 <![CDATA[
+		 WHERE title LIKE '%' || #{searchKeyword} || '%'
+		 ]]>
+		 ORDER BY seq DESC
+	</select>
+</mapper>
