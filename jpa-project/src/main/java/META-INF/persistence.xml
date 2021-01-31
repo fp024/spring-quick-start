@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+	<persistence-unit name="jpa-project">
+		<class>com.springbook.biz.board.Board</class>
+		<properties>
+			<!-- 필수 속성 -->
+			<property name="javax.persistence.jdbc.driver" 		value="org.h2.Driver"/>
+			<property name="javax.persistence.jdbc.user"		value="sa"/>
+			<property name="javax.persistence.jdbc.password"	value=""/>
+			<property name="javax.persistence.jdbc.url"			value="jdbc:h2:tcp://localhost/~/spring_quick_start"/>
+			
+			<!-- 옵션 -->
+			<property name="hibernate.show_sql" 					value="true"/>
+			<property name="hibernate.format_sql"				 	value="true"/>
+			<property name="hibernate.use_sql_comments"				value="false"/>
+			<property name="hibernate.id.new_generator_mappings"	value="true"/>
+			<property name="hibernate.hbm2ddl.auto"					value="create"/>
+		</properties>
+		
+		<!-- 
+		하이버네이트 가이드:
+			https://docs.jboss.org/hibernate/orm/5.4/userguide/html_single/Hibernate_User_Guide.html
+		
+		hibernate.show_sql (e.g. true or false (default value))
+    		Write all SQL statements to the console. This is an alternative to setting the log category org.hibernate.SQL to debug.
+		
+		hibernate.format_sql (e.g. true or false (default value))
+    		Pretty-print the SQL in the log and console.
+		
+		hibernate.use_sql_comments (e.g. true or false (default value))
+			If true, Hibernate generates comments inside the SQL, for easier debugging.
+		
+		hibernate.id.new_generator_mappings (e.g. true (default value) or false)
+			Setting which indicates whether or not the new IdentifierGenerator are used for AUTO, TABLE and SEQUENCE.
+			Existing applications may want to disable this (set it false) for upgrade compatibility from 3.x and 4.x to 5.x.
+			
+		hibernate.hbm2ddl.auto (e.g. none (default value), create-only, drop, create, create-drop, validate, and update)
+    		Setting to perform SchemaManagementTool actions automatically as part of the SessionFactory lifecycle. 
+    		Valid options are defined by the externalHbm2ddlName value of the Action enum:
+
+    		none
+        		No action will be performed.
+    		create-only
+        		Database creation will be generated.
+    		drop
+        		Database dropping will be generated.
+    		create
+    			Database dropping will be generated followed by database creation.
+    		create-drop
+    			Drop the schema and recreate it on SessionFactory startup.
+    			Additionally, drop the schema on SessionFactory shutdown.
+    		validate
+    			Validate the database schema.
+    		update
+    			Update the database schema.
+		 -->
+		
+	</persistence-unit>
+</persistence>
