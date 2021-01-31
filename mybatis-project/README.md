@@ -6,3 +6,8 @@
 	
 * MyBatis 매퍼
 	* https://mybatis.org/spring/ko/mappers.html
+	
+	
+### 정오표
+* p506 
+	* org.apache.ibatis.session.SqlSession 의 인터페이스 메서드들이 SQLException를 체크 예외로 선언하지 않는데... update와 delete에 대해서 확인 후 지워주셔야할 것 같습니다.
