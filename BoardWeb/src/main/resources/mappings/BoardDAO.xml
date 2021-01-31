@@ -66,9 +66,16 @@
 	<select id="getBoardList" resultMap="BaseResultMap">
 		SELECT <include refid="allColumns" />
 		  FROM board
-		 <![CDATA[
-		 WHERE title LIKE '%' || #{searchKeyword} || '%'
-		 ]]>
+		  <where>
+			 <choose>
+			 	<when test="searchCondition == 'CONTENT'">
+			 content LIKE '%' || #{searchKeyword} || '%'
+			 	</when>
+			 	<when test="searchCondition == 'TITLE'">
+			 title LIKE '%' || #{searchKeyword} || '%'	
+			 	</when>
+			 </choose> 		  
+		  </where>
 		 ORDER BY seq DESC
 	</select>
 </mapper>
