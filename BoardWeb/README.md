@@ -18,3 +18,13 @@
 ## 중요 문구
 * 스프링 컨테이너가 생성하는 Command 객체의 이름은 클래스 이름의 첫 글자를 소문자로 변경한 이름이 자동으로 설정된다. (p377)
 * 리턴이 Map일 때 JSP에서 ${요소이름.value} ${요소이름.key} 와 같이 사용하는 것...
+
+## 정오표
+* p554: 마지막 단락에서, '데이터베이서 연동' -> '데이터베이스 연동'
+
+
+## 기타
+* Eclipse에서의 JPA 프로젝트는 persistence.xml 가 반드시 있을 것으로 간주하고 없으면 ERROR 알림을 나타는데, 
+  "No persistence.xml file found in project”   프로젝트의 JPA 이하의 Error/Warnings 항목에서 무시처리해주면 된다.
+  https://stackoverflow.com/questions/20287026/how-to-tell-eclipse-to-ignore-no-persistence-xml-file-found-in-project
+  

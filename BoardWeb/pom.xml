@@ -42,6 +42,20 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-entitymanager</artifactId>
+		    <version>5.4.27.Final</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		
+		
 		<!-- Java 8 환경에서 최신 4.x 버전이 호환가능함. -->
 		<dependency>
         	<groupId>com.zaxxer</groupId>

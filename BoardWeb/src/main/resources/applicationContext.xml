@@ -34,6 +34,11 @@
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+
+	<!-- JPA 트랜젝션 메니저 -->
+	<bean id="jpaTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
 	
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
@@ -44,7 +49,7 @@
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
 
-	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+	<tx:advice id="txAdvice" transaction-manager="jpaTransactionManager">
 		<tx:attributes>
 			<tx:method name="get*" read-only="true"/>
 			<tx:method name="*"/>
@@ -56,5 +61,28 @@
 		
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
 	</aop:config>
+	
+	
+	<!-- 스프링과 JPA연동 설정 -->
+	<bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+	
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
+		
+		<property name="packagesToScan" value="com.springbook.biz.board" />
+		
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.use_sql_comments">false</prop>
+				<prop key="hibernate.id.new_generator_mappings">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+		
+	</bean>
 	
 </beans>
