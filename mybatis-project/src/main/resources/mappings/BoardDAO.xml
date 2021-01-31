@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- myBatis Generator 자동생성 메퍼 XML -->
+<mapper namespace="org.fp024.mybatistest.board.impl.BoardDAO">
+  <resultMap id="BaseResultMap" type="org.fp024.mybatistest.board.BoardVO">
+    <id column="SEQ" jdbcType="DECIMAL" property="seq" />
+    <result column="TITLE" jdbcType="VARCHAR" property="title" />
+    <result column="WRITER" jdbcType="VARCHAR" property="writer" />
+    <result column="CONTENT" jdbcType="VARCHAR" property="content" />
+    <result column="REGDATE" jdbcType="TIMESTAMP" property="regDate" />
+    <result column="CNT" jdbcType="DECIMAL" property="cnt" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from BOARD
+    where SEQ = #{seq,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="org.fp024.mybatistest.board.BoardVO">
+    insert into BOARD (SEQ, TITLE, WRITER, 
+      CONTENT, REGDATE, CNT
+      )
+    values (#{seq,jdbcType=DECIMAL}, #{title,jdbcType=VARCHAR}, #{writer,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{regDate,jdbcType=TIMESTAMP}, #{cnt,jdbcType=DECIMAL}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="org.fp024.mybatistest.board.BoardVO">
+    update BOARD
+    set TITLE = #{title,jdbcType=VARCHAR},
+      WRITER = #{writer,jdbcType=VARCHAR},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      REGDATE = #{regDate,jdbcType=TIMESTAMP},
+      CNT = #{cnt,jdbcType=DECIMAL}
+    where SEQ = #{seq,jdbcType=DECIMAL}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select SEQ, TITLE, WRITER, CONTENT, REGDATE, CNT
+    from BOARD
+    where SEQ = #{seq,jdbcType=DECIMAL}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select SEQ, TITLE, WRITER, CONTENT, REGDATE, CNT
+    from BOARD
+  </select>
+</mapper>

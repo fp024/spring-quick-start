@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+
+	<context id="myBatis3Simple" targetRuntime="MyBatis3Simple" >
+		<!-- 자동생성 주석 금지  -->
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+	
+		<jdbcConnection connectionURL="jdbc:h2:tcp://localhost/~/spring_quick_start"
+			driverClass="org.h2.Driver"
+			password=""
+			userId="sa" 
+		/>
+
+		<!-- Java 도메인 모델 생성 -->
+		<javaModelGenerator
+			targetPackage="org.fp024.mybatistest.board" 
+			targetProject="mybatis-project/src/main/java"	
+		>
+		</javaModelGenerator>
+
+		<!-- 메퍼 XML 생성 -->
+		<sqlMapGenerator 
+			targetPackage="mappings"
+			targetProject="mybatis-project/src/main/resources" 
+		/>
+
+		<!-- 메퍼 인터페이스 (레파지토리 인터페이스 )-->
+		<javaClientGenerator type="XMLMAPPER" 
+			targetPackage="org.fp024.mybatistest.board.impl" 
+			targetProject="mybatis-project/src/main/java"
+		/>
+
+		<!-- 타켓 테이블  -->
+		<table 
+			tableName="BOARD"
+			domainObjectName="BoardVO"
+			mapperName="BoardDAO"  
+		>
+			<columnOverride column="REGDATE" property="regDate" />
+			
+			
+		</table>
+
+
+	</context>
+	
+	
+</generatorConfiguration>
