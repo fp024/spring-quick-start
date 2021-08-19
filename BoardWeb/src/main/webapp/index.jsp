@@ -13,7 +13,24 @@
 		<hr>
 			<a href="login.do">로그인</a><br><br><br>
 			<a href="getBoardList.do">글 목록 바로가기</a>
-			<a href="dataTransform.do">글 목록 변환 처리</a>
+			<a href="javascript:test();">글 목록 변환 처리</a>
 		<hr>		
 	</body>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	
+	
+	<script type="text/javascript">
+	function test() {
+		 $.ajax({
+		 	      url:'dataTransform.do', 
+		 	      type:'post',
+				  data: {title:"제목", searchKeyword:"검색키워드"},
+		 	      success: function(data) {
+					console.log(data);
+					console.log(data.boardList[0]);
+		 	      }
+		    });
+	}
+	</script>
+	
 </html>

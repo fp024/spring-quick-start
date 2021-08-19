@@ -29,9 +29,9 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 
-	@RequestMapping("/dataTransform.do")
-	@ResponseBody
-	public BoardListVO dataTransform(BoardVO vo) {
+	@RequestMapping(value="/dataTransform.do", produces = "application/json; charset=UTF-8")
+	public @ResponseBody BoardListVO dataTransform(BoardVO vo) {
+		logger.info("vo: {}", vo);
 		vo.setSearchCondition("TITLE");
 		vo.setSearchKeyword("");
 		List<BoardVO> boardList = boardService.getBoardList(vo);
