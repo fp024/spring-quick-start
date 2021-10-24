@@ -32,11 +32,13 @@
 			, title
 			, writer
 			, content 
+      , cnt
 		) VALUES (
 			#{seq}
 		  , #{title}
 		  , #{writer}
-		  , #{content} 
+		  , #{content}
+      , 0 
 		)
 	</insert>
 
@@ -60,12 +62,10 @@
 		  FROM BOARD
 		 WHERE seq = #{seq}
 	</select>
-	<select id="getBoardList" resultMap="BaseResultMap">
-		<![CDATA[
+	<select id="getBoardList" resultMap="BaseResultMap">		
 		SELECT <include refid="allColumns" />
-		  FROM board
+      FROM board
 		 WHERE title LIKE '%' || #{searchKeyword} || '%'
 		 ORDER BY seq DESC
-		]]>
 	</select>
 </mapper>

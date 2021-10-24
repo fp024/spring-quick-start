@@ -14,7 +14,7 @@ public class BoardServiceClient {
 
 		BoardVO vo = new BoardVO();
 		vo.setTitle("myBatis 제목");
-		vo.setWriter("터프가이");
+		vo.setWriter("털보가이");
 		vo.setContent("myBatis 내용입니다. ...............");
 		boardDAO.insert(vo);
 
