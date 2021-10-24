@@ -26,75 +26,73 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @SessionAttributes("board")
 public class BoardController {
-	@Autowired
-	private BoardService boardService;
+  @Autowired private BoardService boardService;
 
-	@RequestMapping(value="/dataTransform.do", produces = "application/json; charset=UTF-8")
-	public @ResponseBody BoardListVO dataTransform(BoardVO vo) {
-		logger.info("vo: {}", vo);
-		vo.setSearchCondition("TITLE");
-		vo.setSearchKeyword("");
-		List<BoardVO> boardList = boardService.getBoardList(vo);
-		
-		BoardListVO boardListVO = new BoardListVO();
-		boardListVO.setBoardList(boardList);
-		return boardListVO;
-	}
+  @RequestMapping(value = "/dataTransform.do", produces = "application/json; charset=UTF-8")
+  public @ResponseBody BoardListVO dataTransform(BoardVO vo) {
+    logger.info("vo: {}", vo);
+    vo.setSearchCondition("TITLE");
+    vo.setSearchKeyword("");
+    List<BoardVO> boardList = boardService.getBoardList(vo);
 
-	@ModelAttribute("conditionMap")
-	public Map<String, String> searchConditionMap() {
-		Map<String, String> conditionMap = new LinkedHashMap<>();
-		conditionMap.put("message.board.list.search.condition.title", "TITLE");
-		conditionMap.put("message.board.list.search.condition.content", "CONTENT");
-		return conditionMap;
-	}
+    BoardListVO boardListVO = new BoardListVO();
+    boardListVO.setBoardList(boardList);
+    return boardListVO;
+  }
 
-	@RequestMapping("/insertBoard.do")
-	public String insertBoard(BoardVO vo) throws IOException {
-		boardService.insertBoard(vo);
+  @ModelAttribute("conditionMap")
+  public Map<String, String> searchConditionMap() {
+    Map<String, String> conditionMap = new LinkedHashMap<>();
+    conditionMap.put("message.board.list.search.condition.title", "TITLE");
+    conditionMap.put("message.board.list.search.condition.content", "CONTENT");
+    return conditionMap;
+  }
 
-		if (!vo.getUploadFile().isEmpty()) {
-			String filename = vo.getUploadFile().getOriginalFilename();
-			vo.getUploadFile().transferTo(new File("D:/Temp/BoardWeb/" + filename));
-		}
+  @RequestMapping("/insertBoard.do")
+  public String insertBoard(BoardVO vo) throws IOException {
+    boardService.insertBoard(vo);
 
-		return "getBoardList.do";
-	}
+    if (!vo.getUploadFile().isEmpty()) {
+      String filename = vo.getUploadFile().getOriginalFilename();
+      vo.getUploadFile().transferTo(new File("D:/Temp/BoardWeb/" + filename));
+    }
 
-	@RequestMapping("/updateBoard.do")
-	public String updateBoard(@ModelAttribute("board") BoardVO vo, BoardDAO boardDAO) {
-		logger.warn("업데이트할 board 정보: {}", vo);
-		boardDAO.updateBoard(vo);
-		return "getBoardList.do";
-	}
+    return "getBoardList.do";
+  }
 
-	@RequestMapping("/deleteBoard.do")
-	public String deleteBoard(BoardVO vo) {
-		boardService.deleteBoard(vo);
-		return "getBoardList.do";
-	}
+  @RequestMapping("/updateBoard.do")
+  public String updateBoard(@ModelAttribute("board") BoardVO vo, BoardDAO boardDAO) {
+    logger.warn("업데이트할 board 정보: {}", vo);
+    boardService.updateBoard(vo);
+    return "getBoardList.do";
+  }
 
-	@RequestMapping("/getBoardList.do")
-	public String getBoardList(BoardVO vo, Model model) {
-		logger.info("getBoardList.do {}", vo);
-		
-		
-		if (Strings.isNullOrEmpty(vo.getSearchCondition())) {
-			vo.setSearchCondition("TITLE");
-		}
+  @RequestMapping("/deleteBoard.do")
+  public String deleteBoard(BoardVO vo) {
+    boardService.deleteBoard(vo);
+    return "getBoardList.do";
+  }
 
-		if (Strings.isNullOrEmpty(vo.getSearchKeyword())) {
-			vo.setSearchKeyword("");
-		}
+  @RequestMapping("/getBoardList.do")
+  public String getBoardList(BoardVO vo, Model model) {
+    logger.info("getBoardList.do {}", vo);
 
-		List<BoardVO> boardList = boardService.getBoardList(vo);
-		model.addAttribute("boardList", boardList);
-		return "getBoardList.jsp";
-	}
+    if (Strings.isNullOrEmpty(vo.getSearchCondition())) {
+      vo.setSearchCondition("TITLE");
+    }
 
-	@RequestMapping("/getBoard.do")
-	public String getBoard(BoardVO vo, Model model) {
-		model.addAttribute("board", boardService.getBoard(vo)); // Model 정보 저장
-		return "getBoard.jsp"; // View 이름 리턴
-	}
+    if (Strings.isNullOrEmpty(vo.getSearchKeyword())) {
+      vo.setSearchKeyword("");
+    }
+
+    List<BoardVO> boardList = boardService.getBoardList(vo);
+    model.addAttribute("boardList", boardList);
+    return "getBoardList.jsp";
+  }
+
+  @RequestMapping("/getBoard.do")
+  public String getBoard(BoardVO vo, Model model) {
+    model.addAttribute("board", boardService.getBoard(vo)); // Model 정보 저장
+    return "getBoard.jsp"; // View 이름 리턴
+  }
 }

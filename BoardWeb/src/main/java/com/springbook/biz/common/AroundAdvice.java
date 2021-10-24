@@ -9,21 +9,21 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-//@Aspect
+// @Aspect
 public class AroundAdvice {
-	@Around(value = "PointcutCommon.allPointcut()")
-	public Object aroundLog(ProceedingJoinPoint pjp) throws Throwable {
-		String method = pjp.getSignature().getName();
-		
-		StopWatch stopWatch = new StopWatch();
-		stopWatch.start();
+  @Around(value = "PointcutCommon.allPointcut()")
+  public Object aroundLog(ProceedingJoinPoint pjp) throws Throwable {
+    String method = pjp.getSignature().getName();
 
-		Object object = pjp.proceed();
-		
-		stopWatch.stop();
+    StopWatch stopWatch = new StopWatch();
+    stopWatch.start();
 
-		logger.info("{}() 메서드 수행에 걸린 시간 : {}(ms)초", method, stopWatch.getTotalTimeMillis());
+    Object object = pjp.proceed();
 
-		return object;
-	}
+    stopWatch.stop();
+
+    logger.info("{}() 메서드 수행에 걸린 시간 : {}(ms)초", method, stopWatch.getTotalTimeMillis());
+
+    return object;
+  }
 }

@@ -10,11 +10,10 @@ import com.springbook.biz.user.UserVO;
 // 확인: 확인시 userServiceImpl로 만들어지고 있다.
 @Service("userService")
 public class UserServiceImpl implements UserService {
-	@Autowired
-	private UserDAO userDAO;
+  @Autowired private UserDAO userDAO;
 
-	@Override
-	public UserVO getUser(UserVO vo) {
-		return userDAO.getUser(vo);
-	}
+  @Override
+  public UserVO getUser(UserVO vo) {
+    return userDAO.getUser(vo);
+  }
 }

@@ -21,7 +21,7 @@ import lombok.ToString;
 
 /**
  * VO(Value Object)
- * 
+ *
  * @author fp024
  */
 @Getter
@@ -30,31 +30,22 @@ import lombok.ToString;
 @ToString
 @Entity
 public class BoardVO {
-	@XmlAttribute
-	@Id
-	@GeneratedValue
-	private int seq;
-	
-	private String title;
-	
-	private String writer;
-	
-	private String content;
-	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date regDate;
-	
-	private int cnt;
-	
-	@Transient
-	@XmlTransient
-	private String searchCondition;
-	
-	@Transient
-	@XmlTransient
-	private String searchKeyword;
-	
-	@Transient
-	@XmlTransient
-	private MultipartFile uploadFile;	
+  @XmlAttribute @Id @GeneratedValue private int seq;
+
+  private String title;
+
+  private String writer;
+
+  private String content;
+
+  @Temporal(TemporalType.TIMESTAMP)
+  private Date regDate;
+
+  private int cnt;
+
+  @Transient @XmlTransient private String searchCondition;
+
+  @Transient @XmlTransient private String searchKeyword;
+
+  @Transient @XmlTransient private MultipartFile uploadFile;
 }

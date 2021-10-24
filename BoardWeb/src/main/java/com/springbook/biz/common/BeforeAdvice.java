@@ -11,13 +11,13 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-//@Aspect
+// @Aspect
 @Order(value = 1)
 public class BeforeAdvice {
-	@Before("PointcutCommon.allPointcut()")
-	public void beforeLog(JoinPoint jp) {
-		String method = jp.getSignature().getName();
-		Object[] args = jp.getArgs();
-		logger.info("[사전 처리] {}() 메서드 ARGS 정보: {}", method, Arrays.toString(args));
-	}
+  @Before("PointcutCommon.allPointcut()")
+  public void beforeLog(JoinPoint jp) {
+    String method = jp.getSignature().getName();
+    Object[] args = jp.getArgs();
+    logger.info("[사전 처리] {}() 메서드 ARGS 정보: {}", method, Arrays.toString(args));
+  }
 }

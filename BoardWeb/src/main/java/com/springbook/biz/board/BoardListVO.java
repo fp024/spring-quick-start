@@ -17,6 +17,6 @@ import lombok.ToString;
 @XmlRootElement(name = "boardList")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class BoardListVO {
-	@XmlElement(name = "board")
-	private List<BoardVO> boardList;
+  @XmlElement(name = "board")
+  private List<BoardVO> boardList;
 }
