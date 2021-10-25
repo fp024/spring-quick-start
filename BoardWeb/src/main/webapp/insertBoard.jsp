@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"    uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -38,8 +39,16 @@
 	        </tr>
 	        <tr>
 	            <th scope="row">작성자</th>
-	            <td>
-	                <input type="text" name="writer" size="10">
+	            <td>	                
+                <c:choose>
+                <c:when test="${not empty userName}">
+                  ${userName}<input type="hidden" name="writer" value="${userName}" size="10">
+                </c:when>
+                <c:otherwise>
+                  <input type="text" name="writer" size="10">
+                </c:otherwise>
+              </c:choose>
+                  
 	            </td>
 	        </tr>
 	        <tr>

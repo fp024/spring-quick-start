@@ -46,7 +46,7 @@
 	            </td>
 	        </tr>
 	        <tr>
-	            <th scope="row">작성자</th>
+	            <th scope="row">작성자</th>             
 	            <td>${board.writer}</td>
 	        </tr>
 	        <tr>

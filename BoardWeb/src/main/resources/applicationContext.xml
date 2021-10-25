@@ -85,6 +85,11 @@
 				<prop key="hibernate.use_sql_comments">false</prop>
 				<prop key="hibernate.id.new_generator_mappings">true</prop>				
         
+        <!-- JPA 사양에 스크립트 실행 관련해서, 인코딩을 정해주는 부분이 없었는데, hibernate 설정으로 추가된 것 같다.   -->
+        <!-- https://github.com/hibernate/hibernate-orm/pull/1486 -->
+        <!-- https://stackoverflow.com/questions/57462619/encoding-utf-8-problem-while-jpa-hibernate-execute-sql-script-with-intelli-j -->
+        <prop key="hibernate.hbm2ddl.charset_name">UTF-8</prop> <!-- 이것을 지정해야 sql 스크립트의 한글이 깨지지 않음. -->
+        
          <!-- https://docs.oracle.com/javaee/8/tutorial/persistence-intro005.htm -->
         <prop key="javax.persistence.schema-generation.database.action">drop-and-create</prop>
         
