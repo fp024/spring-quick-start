@@ -22,7 +22,7 @@ public class UserDAO {
   private ResultSet rs;
 
   /** SQL 명령어들... */
-  private final String USER_GET = "SELECT * FROM users WHERE id = ? AND password = ? ";
+  private static final String USER_GET = "SELECT * FROM users WHERE id = ? AND password = ? ";
 
   /** CRUD 기능의 메서드 구현 */
   public UserVO getUser(UserVO vo) {
@@ -39,7 +39,7 @@ public class UserDAO {
         user.setId(rs.getString("ID"));
         user.setPassword(rs.getString("PASSWORD"));
         user.setName(rs.getString("NAME"));
-        user.setRole(rs.getString("ROLE"));
+        user.setRole(rs.getString("U_ROLE"));
         return user;
       }
     } catch (Exception e) {

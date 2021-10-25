@@ -1,4 +1,25 @@
+## 프로젝트 실행 방법
+
+* 실행 명령
+    ```bash
+    mvnw clean jetty:run
+    ```
+    
+* 접속 주소
+  
+  * http://localhost:8080/board_web/
+  
+* DB
+  
+  * h2 DB Embbed Memory 방식
+  * 프로젝트 종료되면 데이터 없어짐
+  * 프로젝트 시작될 때, 기본 유저 2명 INSERT
+
+
+
+
 ## 서평
+
 * AOP 관련 예제가 점진적으로 이해하기 쉽게 되어있음.
 * JDBC 진행방식도 자세히 되어있음.
 * 레거시 코드를 근래의 프레임워크로 전환할 일을 맡게 될 수도 있는데, 
@@ -27,4 +48,3 @@
 * Eclipse에서의 JPA 프로젝트는 persistence.xml 가 반드시 있을 것으로 간주하고 없으면 ERROR 알림을 나타는데, 
   "No persistence.xml file found in project”   프로젝트의 JPA 이하의 Error/Warnings 항목에서 무시처리해주면 된다.
   https://stackoverflow.com/questions/20287026/how-to-tell-eclipse-to-ignore-no-persistence-xml-file-found-in-project
-  

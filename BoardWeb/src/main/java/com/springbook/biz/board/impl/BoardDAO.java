@@ -3,6 +3,7 @@ package com.springbook.biz.board.impl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -127,8 +128,8 @@ public class BoardDAO {
         board.setTitle(rs.getString("TITLE"));
         board.setWriter(rs.getString("WRITER"));
         board.setContent(rs.getString("CONTENT"));
-        board.setRegDate(rs.getTimestamp("REGDATE")); // java.sql.Date는 java.util.Date의 서브타입이다.
-        board.setCnt(rs.getInt("CNT"));
+        board.setRegDate(rs.getTimestamp("REGDATE").toLocalDateTime()); // java.sql.Date는 java.util.Date의 서브타입이다.
+        board.setCnt(rs.getInt("CNT"));        
         return board;
       }
 
@@ -163,7 +164,7 @@ public class BoardDAO {
         board.setTitle(rs.getString("TITLE"));
         board.setWriter(rs.getString("WRITER"));
         board.setContent(rs.getString("CONTENT"));
-        board.setRegDate(rs.getTimestamp("REGDATE")); // java.sql.Date는 java.util.Date의 서브타입이다.
+        board.setRegDate(rs.getTimestamp("REGDATE").toLocalDateTime()); // java.sql.Date는 java.util.Date의 서브타입이다.
         board.setCnt(rs.getInt("CNT"));
         boardList.add(board);
       }

@@ -1,5 +1,6 @@
 package com.springbook.biz.board.impl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ public class BoardServiceImpl implements BoardService {
 
   @Override
   public void insertBoard(BoardVO vo) {
+    vo.setRegDate(LocalDateTime.now());
     boardDAO.insertBoard(vo);
   }
 

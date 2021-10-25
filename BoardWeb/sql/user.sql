@@ -1,9 +1,9 @@
-CREATE TABLE USERS (
-	ID VARCHAR(8) PRIMARY KEY,
-	PASSWORD VARCHAR(8),
-	NAME VARCHAR(20),
-	"ROLE" VARCHAR(5)
+CREATE TABLE users (
+	id VARCHAR(8) PRIMARY KEY,
+	password VARCHAR(8),
+	name VARCHAR(20),
+	"role" VARCHAR(5)
 );
 
-INSERT INTO USERS (ID, PASSWORD, NAME, "ROLE") VALUES ('test', 'test123', '관리자', 'Admin');
-INSERT INTO USERS (ID, PASSWORD, NAME, "ROLE") VALUES ('user1', 'user1', '홍길동', 'User');
+INSERT INTO users (id, password, name, "role") VALUES ('test', 'test123', '관리자', 'Admin');
+INSERT INTO users (id, password, name, "role") VALUES ('user1', 'user1', '홍길동', 'User');

@@ -1,12 +1,12 @@
 package com.springbook.biz.board;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -29,6 +29,7 @@ import lombok.ToString;
 @XmlAccessorType(XmlAccessType.FIELD)
 @ToString
 @Entity
+@Table(name = "board")
 public class BoardVO {
   @XmlAttribute @Id @GeneratedValue private int seq;
 
@@ -38,8 +39,8 @@ public class BoardVO {
 
   private String content;
 
-  @Temporal(TemporalType.TIMESTAMP)
-  private Date regDate;
+  @Column(name = "regdate")
+  private LocalDateTime regDate;
 
   private int cnt;
 

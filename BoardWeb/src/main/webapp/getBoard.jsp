@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" 	uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="javatime" uri="http://sargue.net/jsptags/time"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -55,8 +56,8 @@
 	            </td>
 	        </tr>
 	        <tr>
-	            <th scope="row">등록일</th>
-	            <td><fmt:formatDate value="${board.regDate}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
+	            <th scope="row">등록일</th>	            
+              <td><javatime:format value="${board.regDate}" pattern="yyyy-MM-dd HH:mm:ss"></javatime:format></td>
 	        </tr>
 	        <tr>
 	            <th scope="row">조회수</th>

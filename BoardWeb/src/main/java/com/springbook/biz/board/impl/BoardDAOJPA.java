@@ -23,33 +23,18 @@ public class BoardDAOJPA {
   }
 
   /**
-   *  이전에 이부분 확인을 안했었나?
-   *  수정과 삭제시, 이 시점에 BoardVO 영속화된 상태여야하는데,
-   *  그게 아니여서, 동작을 하지 않고 있었다. 
-   *  일단 대상을 찾아와서 영속화한 다음, 그것의 값을 바꿔주는 코드 추가 
-   *  
-   *  TODO: 책에서도 이랬었는지 봐야할 것 같다.
+   * 책에서도 다른 처리 없이 merge만 하는데...
+   * 일단 한번은 읽었던 상태라 이런 것인지.. 잘되긴 된다.
    */
   public void updateBoard(BoardVO vo) {
     logger.info("===> JPA로 updateBoard() 기능처리");
-    BoardVO found = em.find(BoardVO.class, vo.getSeq());
-    found.setTitle(vo.getTitle());
-    found.setContent(vo.getContent());
-    em.merge(found);
+    em.merge(vo);
   }
 
-  /**
-   *  이전에 이부분 확인을 안했었나?
-   *  수정과 삭제시, 이 시점에 BoardVO 영속화된 상태여야하는데,
-   *  그게 아니여서, 동작을 하지 않고 있었다.
-   *  일단 대상을 찾아와서 영속화한 다음, 그것을 삭제하는 코드 추가 
-   *  
-   *  TODO: 책에서도 이랬었는지 봐야할 것 같다.
-   */  
+  /** 아래부분에서, remove 안에 find하는 부분을 내가 누락했었다. */
   public void deleteBoard(BoardVO vo) {
     logger.info("===> JPA로 deleteBoard() 기능처리");
-    BoardVO found = em.find(BoardVO.class, vo.getSeq());
-    em.remove(found);
+    em.remove(em.find(BoardVO.class, vo.getSeq()));
   }
 
   public BoardVO getBoard(BoardVO vo) {

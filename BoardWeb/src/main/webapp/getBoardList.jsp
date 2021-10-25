@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" 			uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" 		uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="javatime" uri="http://sargue.net/jsptags/time"%>
 <%@ taglib prefix="spring" 		uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -61,7 +62,7 @@
 	        <td>${board.seq}</td>
 	        <td><a href="getBoard.do?seq=${board.seq}">${board.title}</a></td>
 	        <td>${board.writer}</td>
-	        <td><fmt:formatDate value="${board.regDate}" pattern="yyy-MM-dd HH:mm"/></td>
+	        <td><javatime:format value="${board.regDate}" pattern="yyyy-MM-dd HH:mm"></javatime:format></td>
 	        <td>${board.cnt}</td>
 	    </tr>
 	    </c:forEach>
