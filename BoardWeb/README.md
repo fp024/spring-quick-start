@@ -11,7 +11,7 @@
   
 * DB
   
-  * h2 DB Embbed Memory 방식
+  * h2 DB Embedded Memory 방식
   * 프로젝트 종료되면 데이터 없어짐
   * 프로젝트 시작될 때, 기본 유저 2명 INSERT
 
