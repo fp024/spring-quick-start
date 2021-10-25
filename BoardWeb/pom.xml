@@ -97,12 +97,14 @@
       <version>2.0.6</version>
     </dependency>
 
-    <!-- AspectJ -->
+    <!-- AspectJ --> <!-- aspectjrt 와  aspectjweaver에 클래스 중복이 있어서 aspectjrt를 제외해본다. -->
+    <!-- 
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjrt</artifactId>
       <version>${org.aspectj-version}</version>
     </dependency>
+    -->
 
     <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
     <dependency>

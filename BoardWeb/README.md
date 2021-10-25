@@ -48,3 +48,27 @@
 * Eclipse에서의 JPA 프로젝트는 persistence.xml 가 반드시 있을 것으로 간주하고 없으면 ERROR 알림을 나타는데, 
   "No persistence.xml file found in project”   프로젝트의 JPA 이하의 Error/Warnings 항목에서 무시처리해주면 된다.
   https://stackoverflow.com/questions/20287026/how-to-tell-eclipse-to-ignore-no-persistence-xml-file-found-in-project
+
+* users 테이블을 입력하는 부분을 아래와 같이 JPA 메타데이터와 스크립트 실행으로 처리되게 수정
+
+  * **h2환경에서 테이블 생성 구문의 경우 개행이 없는 한줄로 만들어야했다.**
+
+  ```xml
+  <!-- JPA 사양에 스크립트 실행 관련해서, 인코딩을 정해주는 부분이 없었는데, hibernate 설정으로 추가된 것 같다.   -->
+  <!-- https://github.com/hibernate/hibernate-orm/pull/1486 -->
+  <!-- https://stackoverflow.com/questions/57462619/encoding-utf-8-problem-while-jpa-hibernate-execute-sql-script-with-intelli-j -->
+  <prop key="hibernate.hbm2ddl.charset_name">UTF-8</prop> <!-- 이것을 지정해야 sql 스크립트의 한글이 깨진채로 DB에 저장되지않음. -->
+  
+  <!-- https://docs.oracle.com/javaee/7/tutorial/persistence-intro005.htm -->
+  <prop key="javax.persistence.schema-generation.database.action">drop-and-create</prop>
+  
+  <prop key="javax.persistence.schema-generation.drop-source">script-then-metadata</prop>
+  <prop key="javax.persistence.schema-generation.drop-script-source">init-sql/drop-users-table.sql</prop>
+  
+  <prop key="javax.persistence.schema-generation.create-source">script-then-metadata</prop>
+  <prop key="javax.persistence.schema-generation.create-script-source">init-sql/create-users-table.sql</prop>
+  
+  <prop key="javax.persistence.sql-load-script-source">init-sql/insert-user-data.sql</prop>
+  ```
+  * 최초 저자님 의도에 맞게 UserVO는 JPA엔티티로 만들지 말고 쿼리로 입력하고 JDBC로만 다루도록 했다.
+
