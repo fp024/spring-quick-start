@@ -16,7 +16,7 @@ public class JDBCUtilTest {
     Properties prop = JDBCUtil.getDBProperties();
 
     assertEquals("org.h2.Driver", prop.get("jdbc.driver"));
-    assertEquals("jdbc:h2:~/embedded_db/spring_quick_start", prop.get("jdbc.url"));
+    assertEquals("jdbc:h2:~/embedded_db/spring_quick_start;TRACE_LEVEL_SYSTEM_OUT=0", prop.get("jdbc.url"));
     assertEquals("sa", prop.get("jdbc.username"));
     assertEquals("", prop.get("jdbc.password"));
   }
