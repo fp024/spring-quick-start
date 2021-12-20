@@ -6,8 +6,8 @@
 			<!-- 필수 속성 -->
 			<property name="javax.persistence.jdbc.driver" 		value="org.h2.Driver"/>
 			<property name="javax.persistence.jdbc.user"		value="sa"/>
-			<property name="javax.persistence.jdbc.password"	value=""/>
-			<property name="javax.persistence.jdbc.url"			value="jdbc:h2:tcp://localhost/~/embedded_db/spring_quick_start"/>
+			<property name="javax.persistence.jdbc.password"	value="sa"/>
+			<property name="javax.persistence.jdbc.url"			value="jdbc:h2:tcp://localhost/~/h2db-data/spring-quick-start;TRACE_LEVEL_SYSTEM_OUT=0"/>
 			<property name="hibernate.dialect" 						value="org.hibernate.dialect.H2Dialect"/>
 			
 			<!-- 옵션 -->

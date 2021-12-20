@@ -43,7 +43,7 @@ public class JDBCUtil {
       return DriverManager.getConnection(
           dbProperties.getProperty("jdbc.url"),
           dbProperties.getProperty("jdbc.username"),
-          dbProperties.getProperty("jdbcpassword")); // h2 기본 사용시 sa에 대한 사용자명을 반드시 넣어야함.
+          dbProperties.getProperty("jdbc.password")); // h2 기본 사용시 sa에 대한 사용자명을 반드시 넣어야함.
       /*
       	유저를 새로 만들 수도 있음.
       CREATE USER IF NOT EXISTS board PASSWORD 'board' ADMIN;
