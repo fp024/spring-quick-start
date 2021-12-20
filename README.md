@@ -8,9 +8,20 @@
 
 ### 테스트 수행시 H2 DB가 서버 모드로 켜져있어야하는 프로젝트
 
-~~BoardWeb은 메모리 DB로 설정하여 일부러 H2 DB를 켤 필요가 없지만, jpa-project와 mybatis-project는 H2가 켜진 상태에서 테스트를 수행해야함.~~
+이번에 h2 버전업 하면서 모든 프로젝트가 H2 DB 서버모드로 사용되도록 수정했습니다. (h2 DB서버가 미리 켜져있어야함.)
 
-이번에 h2 버전업 하면서 모든 프로젝트 항상 H2가 켜져있어야게 수정했다. 어짜피 DB를 ~/test로 기본 경로로 안쓰면 자동으로 DB를 만들어내지 않음.
+* Database path:`~/h2db-data/spring-quick-start`
+* Username, Password, Password confimation: `sa`
+  ![create-h2-database](doc-resources/create-h2-database.png)
+
+* 프로젝트 실행 전에 미리 데이터베이스를 만들어 놓고, h2 DB가 실행중이여야합니다.
+  * BoardWeb
+    * user 테이블: 스키마 생성, 데이터 입력 쿼리는 프로젝트에 내장되어있고 자동 실행
+    * board 테이블: JPA에 의해 자동 생성
+  * jpa-project
+    * board 테이블: JPA에 의해 자동생성
+  * mybatis-project
+    * board 테이블: 스키마 생성, 데이터 입력 쿼리는 프로젝트에 내장되어있고 자동 실행
 
 
 

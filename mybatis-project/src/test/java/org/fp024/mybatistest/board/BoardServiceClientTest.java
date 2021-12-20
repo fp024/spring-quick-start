@@ -1,13 +1,13 @@
 package org.fp024.mybatistest.board;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
+import org.fp024.mybatistest.test.DatabaseBeforeEachInit;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
-@RunWith(JUnit4.class)
-public class BoardServiceClientTest {
+@ExtendWith(DatabaseBeforeEachInit.class)
+class BoardServiceClientTest {
   @Test
-  public void testMain() {
+  void testMain() {
     BoardServiceClient.main(null);
-  }  
+  }
 }
