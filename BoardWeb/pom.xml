@@ -13,7 +13,7 @@
     <org.springframework-version>4.3.30.RELEASE</org.springframework-version>
     <org.aspectj-version>1.8.14</org.aspectj-version>
 
-    <org.mybatis-version>3.5.8</org.mybatis-version>
+    <org.mybatis-version>3.5.9</org.mybatis-version>
 
     <jetty.version>9.4.44.v20210927</jetty.version>
 
