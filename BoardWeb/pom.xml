@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.springbook</groupId>
   <artifactId>board_web</artifactId>
@@ -9,18 +9,31 @@
   <version>1.0.0-SNAPSHOT</version>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <java-version>1.8</java-version>
-    <org.springframework-version>4.3.30.RELEASE</org.springframework-version>
-    <org.aspectj-version>1.8.14</org.aspectj-version>
+    <java-version>11</java-version>
 
+    <lombok.version>1.18.22</lombok.version>
+
+    <org.springframework-version>5.3.14</org.springframework-version>
+
+    <org.aspectj-version>1.9.7</org.aspectj-version>
+
+    <hikaricp.version>5.0.1</hikaricp.version>
     <org.mybatis-version>3.5.9</org.mybatis-version>
+    <mybatis-spring.version>2.0.6</mybatis-spring.version>
+    <hibernate.version>5.6.3.Final</hibernate.version>
 
-    <jetty.version>9.4.44.v20210927</jetty.version>
-
-    <org.slf4j-version>1.7.32</org.slf4j-version>
     <log4j2.version>2.17.1</log4j2.version>
-    
+
+    <guava.version>31.0.1-jre</guava.version>
+
+    <commons-fileupload.version>1.4</commons-fileupload.version>
+
+    <gson.version>2.8.9</gson.version>
+
+    <junit.jupiter.version>5.8.2</junit.jupiter.version>
+
     <h2.version>2.0.206</h2.version>
+    <jetty.version>10.0.7</jetty.version>
   </properties>
 
   <dependencyManagement>
@@ -32,6 +45,13 @@
         <scope>import</scope>
         <type>pom</type>
       </dependency>
+      <dependency>
+        <groupId>org.junit</groupId>
+        <artifactId>junit-bom</artifactId>
+        <version>${junit.jupiter.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -41,13 +61,6 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
       <version>${org.springframework-version}</version>
-      <exclusions>
-        <!-- Exclude Commons Logging in favor of SLF4j -->
-        <exclusion>
-          <groupId>commons-logging</groupId>
-          <artifactId>commons-logging</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
@@ -65,7 +78,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-entitymanager</artifactId>
-      <version>5.4.32.Final</version>
+      <version>${hibernate.version}</version>
     </dependency>
 
     <dependency>
@@ -79,7 +92,13 @@
     <dependency>
       <groupId>com.zaxxer</groupId>
       <artifactId>HikariCP</artifactId>
-      <version>4.0.3</version>
+      <version>${hikaricp.version}</version>
+      <exclusions>
+        <exclusion> <!-- slf4j의 상위 버전을 사용하여 제외설정 -->
+          <groupId>org.slf4j</groupId>
+          <artifactId>slf4j-api</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
 
@@ -95,10 +114,12 @@
     <dependency>
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis-spring</artifactId>
-      <version>2.0.6</version>
+      <version>${mybatis-spring.version}</version>
     </dependency>
 
-    <!-- AspectJ --> <!-- aspectjrt 와  aspectjweaver에 클래스 중복이 있어서 aspectjrt를 제외해본다. -->
+    <!-- AspectJ -->
+    <!-- aspectjrt 와  aspectjweaver에 클래스 중복이 있어서 aspectjrt를 제외해본다. -->
+    <!-- rt를 제거하더라도 스프링 AOP 사용하는데 특별히 이슈는 없었음. aspectjweaver 에 스프링 AOP가 사용하는 어노테이션이 있음. -->
     <!-- 
     <dependency>
       <groupId>org.aspectj</groupId>
@@ -117,58 +138,26 @@
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <version>30.1-jre</version>
+      <version>${guava.version}</version>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload https://dist.apache.org/repos/dist/release/commons/fileupload/RELEASE-NOTES.txt -->
     <dependency>
       <groupId>commons-fileupload</groupId>
       <artifactId>commons-fileupload</artifactId>
-      <version>1.4</version>
+      <version>${commons-fileupload.version}</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind https://github.com/FasterXML/jackson-databind -->
-    <!-- 
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>2.12.1</version>
-    </dependency>
-    -->
     <!-- Spring 4.1 부터 JSON메시지 컨버터로 GSON을 사용할 수 있다. -->
     <dependency>
       <groupId>com.google.code.gson</groupId>
       <artifactId>gson</artifactId>
-      <version>2.8.7</version>
-    </dependency>
-
-    <!-- Logging -->
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <version>${org.slf4j-version}</version>
-    </dependency>
-
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>jcl-over-slf4j</artifactId>
-      <version>${org.slf4j-version}</version>
-      <scope>runtime</scope>
+      <version>${gson.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-slf4j-impl</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-api</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.logging.log4j</groupId>
-      <artifactId>log4j-core</artifactId>
     </dependency>
 
     <!-- @Inject -->
@@ -197,7 +186,7 @@
       <version>1.2</version>
       <scope>runtime</scope>
     </dependency>
-    
+
     <!-- https://github.com/sargue/java-time-jsptags -->
     <dependency>
       <groupId>net.sargue</groupId>
@@ -217,21 +206,30 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>1.18.22</version>
+      <version>${lombok.version}</version>
       <scope>provided</scope>
     </dependency>
 
     <!-- Test -->
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.13.2</version>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>${junit.jupiter.version}</version>
       <scope>test</scope>
     </dependency>
+
   </dependencies>
   <build>
     <pluginManagement>
       <plugins>
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.22.2</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-failsafe-plugin</artifactId>
+          <version>2.22.2</version>
+        </plugin>
         <!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
         <plugin>
           <groupId>org.eclipse.m2e</groupId>
@@ -250,7 +248,7 @@
                     </goals>
                   </pluginExecutionFilter>
                   <action>
-                    <ignore></ignore>
+                    <ignore />
                   </action>
                 </pluginExecution>
               </pluginExecutions>
@@ -321,13 +319,13 @@
 
       <!-- Jetty 서버 구동 -->
       <plugin>
-        <!-- https://www.eclipse.org/jetty/documentation/jetty-9/index.html#jetty-maven-plugin -->
+        <!-- https://www.eclipse.org/jetty/documentation/jetty-10/programming-guide/index.html#jetty-maven-plugin -->
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
         <version>${jetty.version}</version>
         <configuration>
           <webApp>
-            <contextPath>/${project.artifactId}</contextPath>
+            <contextPath>/</contextPath>
             <sessionHandler>
               <sessionIdPathParameterName>none</sessionIdPathParameterName>
             </sessionHandler>
@@ -336,12 +334,13 @@
           <deployMode>EMBED</deployMode>
           <stopKey>CTRL+C</stopKey>
           <stopPort>8999</stopPort>
-          <!-- https://linuxpip.org/an-illegal-reflective-access-operation-has-occurred/ -->
-          <!-- https://docs.oracle.com/en/java/javase/11/migrate/index.html#JSMIG-GUID-2F61F3A9-0979-46A4-8B49-325BA0EE8B66 -->
-          <jvmArgs>--illegal-access=permit</jvmArgs>
-          <!-- 변경 감지 자동 재시작시 ContextLoaderListener가 제대로 실행되지 않는 오류가 발생한다. 설정을 0로하여 자동 재시작이 일어나지 않도록 한다. -->
-          <scanIntervalSeconds>0</scanIntervalSeconds>
-          <!-- 9.x 설정: <webXml>의 기본값이 ${project.baseDir}/src/main/webapp/WEB-INF/web.xml 으로 정의되어 일부러 선언할 필요는 없음. -->
+          <!-- 9.x 설정: <scanIntervalSeconds> 대신 <scan> 사용 -->
+          <!--
+            변경 감지 자동 재시작시 ContextLoaderListener가 제대로 실행되지 않는 오류가 발생한다.
+            설정을 -1로하여 자동 재시작이 일어나지 않도록 한다.
+           -->
+          <scan>-1</scan>
+          <!-- 9.x 설정: <webApp>의 기본값이 ${project.baseDir}/src/main/webapp/WEB-INF/web.xml 으로 정의되어 일부러 선언할 필요는 없음.-->
           <scanTargetPatterns>
             <scanTargetPattern>
               <directory>src/main/webapp/WEB-INF</directory>

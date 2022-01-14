@@ -1,13 +1,10 @@
 package com.springbook.biz.board;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
+import org.junit.jupiter.api.Test;
 
-@RunWith(JUnit4.class)
-public class BoardServiceClientTest {
+class BoardServiceClientTest {
   @Test
-  public void testMain() {
+  void testMain() {
     BoardServiceClient.main(null);
   }
 }

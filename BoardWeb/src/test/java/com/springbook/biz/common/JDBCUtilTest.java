@@ -1,18 +1,15 @@
 package com.springbook.biz.common;
 
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
 
 import java.util.Properties;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(JUnit4.class)
-public class JDBCUtilTest {
+class JDBCUtilTest {
 
   @Test
-  public void testGetDBProperties() {
+  void testGetDBProperties() {
     Properties prop = JDBCUtil.getDBProperties();
 
     assertEquals("org.h2.Driver", prop.get("jdbc.driver"));
