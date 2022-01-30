@@ -20,7 +20,7 @@
     <hikaricp.version>5.0.1</hikaricp.version>
     <org.mybatis-version>3.5.9</org.mybatis-version>
     <mybatis-spring.version>2.0.6</mybatis-spring.version>
-    <hibernate.version>5.6.3.Final</hibernate.version>
+    <hibernate.version>5.6.5.Final</hibernate.version>
 
     <log4j2.version>2.17.1</log4j2.version>
 
