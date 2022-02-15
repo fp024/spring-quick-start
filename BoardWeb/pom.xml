@@ -15,11 +15,11 @@
 
     <org.springframework-version>5.3.15</org.springframework-version>
 
-    <org.aspectj-version>1.9.7</org.aspectj-version>
+    <org.aspectj-version>1.9.8</org.aspectj-version>
 
     <hikaricp.version>5.0.1</hikaricp.version>
     <org.mybatis-version>3.5.9</org.mybatis-version>
-    <mybatis-spring.version>2.0.6</mybatis-spring.version>
+    <mybatis-spring.version>2.0.7</mybatis-spring.version>
     <hibernate.version>5.6.5.Final</hibernate.version>
 
     <log4j2.version>2.17.1</log4j2.version>
