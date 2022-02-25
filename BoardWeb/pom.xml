@@ -30,6 +30,8 @@
 
     <gson.version>2.9.0</gson.version>
 
+    <java-time-jsptags.version>1.1.4</java-time-jsptags.version> <!--- 2.0.0 버전부터는 Java 17을 요구한다.  -->
+
     <junit.jupiter.version>5.8.2</junit.jupiter.version>
 
     <h2.version>2.1.210</h2.version>
@@ -191,7 +193,7 @@
     <dependency>
       <groupId>net.sargue</groupId>
       <artifactId>java-time-jsptags</artifactId>
-      <version>1.1.4</version>
+      <version>${java-time-jsptags.version}</version>
     </dependency>
 
     <!-- h2 Database -->
