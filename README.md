@@ -12,6 +12,7 @@
 
 * Database path:`~/h2db-data/spring-quick-start`
 * Username, Password, Password confimation: `sa`
+
   ![create-h2-database](doc-resources/create-h2-database.png)
 
 * 프로젝트 실행 전에 미리 데이터베이스를 만들어 놓고, h2 DB가 실행중이여야합니다.
