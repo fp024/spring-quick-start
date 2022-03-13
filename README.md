@@ -10,7 +10,14 @@
 
 이번에 h2 버전업 하면서 모든 프로젝트가 H2 DB 서버모드로 사용되도록 수정했습니다. (h2 DB서버가 미리 켜져있어야함.)
 
+* hosts파일에 다음 내용 추가 ( linux:`/etc/hosts` 또는 windows: `%WINDIR%\System32\Drivers\etc\hosts` )
+
+  ```
+  127.0.0.1    h2db-host
+  ```
+
 * Database path:`~/h2db-data/spring-quick-start`
+
 * Username, Password, Password confimation: `sa`
 
   ![create-h2-database](doc-resources/create-h2-database.png)
