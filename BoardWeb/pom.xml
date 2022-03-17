@@ -20,7 +20,7 @@
     <hikaricp.version>5.0.1</hikaricp.version>
     <org.mybatis-version>3.5.9</org.mybatis-version>
     <mybatis-spring.version>2.0.7</mybatis-spring.version>
-    <hibernate.version>5.6.5.Final</hibernate.version>
+    <hibernate.version>5.6.7.Final</hibernate.version>
 
     <log4j2.version>2.17.2</log4j2.version>
 
@@ -30,7 +30,8 @@
 
     <gson.version>2.9.0</gson.version>
 
-    <java-time-jsptags.version>1.1.4</java-time-jsptags.version> <!--- 2.0.0 버전부터는 Java 17을 요구한다.  -->
+    <!--- 2.0.0 버전부터는 Servlet 5.0 과 Java 17을 요구한다. 그 이하버전은 1.1.4버전을 사용하자. -->
+    <java-time-jsptags.version>1.1.4</java-time-jsptags.version> 
 
     <junit.jupiter.version>5.8.2</junit.jupiter.version>
 
