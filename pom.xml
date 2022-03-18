@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.springbook</groupId>
+  <artifactId>spring-quick-start-parent</artifactId>
+  <name>spring-quick-start-parent</name>
+  <packaging>pom</packaging>
+  <version>1.0.0-SNAPSHOT</version>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <java-version>17</java-version>
+    <maven.compiler.source>${java-version}</maven.compiler.source>
+    <maven.compiler.target>${java-version}</maven.compiler.target>
+
+    <lombok.version>1.18.22</lombok.version>
+
+    <org.springframework-version>5.3.16</org.springframework-version>
+
+    <org.aspectj-version>1.9.8</org.aspectj-version>
+
+    <hikaricp.version>5.0.1</hikaricp.version>
+    <mybatis.version>3.5.9</mybatis.version>
+    <mybatis-dynamic-sql.version>1.4.0</mybatis-dynamic-sql.version>
+    <mybatis-spring.version>2.0.7</mybatis-spring.version>
+    <hibernate.version>5.6.7.Final</hibernate.version>
+
+    <log4j2.version>2.17.2</log4j2.version>
+
+    <guava.version>31.1-jre</guava.version>
+
+    <commons-fileupload.version>1.4</commons-fileupload.version>
+
+    <gson.version>2.9.0</gson.version>
+
+    <!--- 2.0.0 버전부터는 Servlet 5.0 과 Java 17을 요구한다. 그 이하버전은 1.1.4버전을 사용하자. -->
+    <java-time-jsptags.version>1.1.4</java-time-jsptags.version> 
+
+    <junit.jupiter.version>5.8.2</junit.jupiter.version>
+
+    <h2.version>2.1.210</h2.version>
+    <jetty.version>10.0.8</jetty.version>
+  </properties>
+
+  <modules>
+    <!-- MyBatis 테스트 프로젝트 -->
+    <module>mybatis-project</module>
+    
+    <!-- JPA 테스트 프로젝트 -->
+    <module>jpa-project</module>
+    <!--<module>../board-spring-boot-starter</module>--><!-- 부모/자식 프로젝트 의존관계 없음 -->
+
+    <!-- 게시판 웹 프로젝트 -->    
+    <module>BoardWeb</module>
+    
+  </modules>
+ 
+</project>
