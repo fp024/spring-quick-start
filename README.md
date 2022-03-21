@@ -24,12 +24,20 @@ $ mvnw clean test
 
 ### 게시판 웹 프로젝트 실행
 
-```bash
-$ cd BoardWeb
-$ mvnw clean jetty:run
-```
+* 프로젝트 경로로 직접 이동해서 실행하는 방법
 
-
+  ```bash
+  $ cd BoardWeb
+  $ mvnw clean jetty:run
+  ```
+  
+* 레파지토리 루트에서 바로 프로젝트 이름 지정해서 실행하는 방법 (`-pl`, `--projects`)
+  ```bash
+  $ mvnw clean jetty:run -pl BoardWeb
+  ```
+  jetty 실행시 `-am`옵션(`--also-make`)을 붙이면 안된다. jetty 플러그인 설정이 하위 POM에만 선언되어있어서 찾지 못하는 문제가 생긴다.
+  
+  
 
 ### 테스트 수행시 H2 DB가 서버 모드로 켜져있어야하는 프로젝트
 
