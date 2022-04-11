@@ -38,7 +38,7 @@
 
     <junit.jupiter.version>5.8.2</junit.jupiter.version>
 
-    <h2.version>2.1.210</h2.version>
+    <h2.version>2.1.212</h2.version>
     <jetty.version>10.0.8</jetty.version>
   </properties>
 
