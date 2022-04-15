@@ -15,7 +15,7 @@
 
     <lombok.version>1.18.22</lombok.version>
 
-    <org.springframework-version>5.3.18</org.springframework-version>
+    <org.springframework-version>5.3.19</org.springframework-version>
 
     <org.aspectj-version>1.9.9.1</org.aspectj-version>
 
@@ -23,7 +23,7 @@
     <mybatis.version>3.5.9</mybatis.version>
     <mybatis-dynamic-sql.version>1.4.0</mybatis-dynamic-sql.version>
     <mybatis-spring.version>2.0.7</mybatis-spring.version>
-    <hibernate.version>5.6.7.Final</hibernate.version>
+    <hibernate.version>5.6.8.Final</hibernate.version>
 
     <log4j2.version>2.17.2</log4j2.version>
 
@@ -39,7 +39,7 @@
     <junit.jupiter.version>5.8.2</junit.jupiter.version>
 
     <h2.version>2.1.212</h2.version>
-    <jetty.version>10.0.8</jetty.version>
+    <jetty.version>10.0.9</jetty.version>
   </properties>
 
   <modules>
