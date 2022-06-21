@@ -38,7 +38,7 @@
 
     <junit.jupiter.version>5.8.2</junit.jupiter.version>
 
-    <h2.version>2.1.212</h2.version>
+    <h2.version>2.1.214</h2.version>
     <jetty.version>10.0.9</jetty.version>
   </properties>
 
@@ -48,7 +48,6 @@
     
     <!-- JPA 테스트 프로젝트 -->
     <module>jpa-project</module>
-    <!--<module>../board-spring-boot-starter</module>--><!-- 부모/자식 프로젝트 의존관계 없음 -->
 
     <!-- 게시판 웹 프로젝트 -->    
     <module>BoardWeb</module>
