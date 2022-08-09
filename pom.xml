@@ -51,7 +51,10 @@
 
     <!-- 게시판 웹 프로젝트 -->    
     <module>BoardWeb</module>
-    
+
+    <!-- 게시판 웹 프로젝트 Servelt 5.0, Spring 6, Hibernate 6 적용 프로젝트 -->    
+    <module>BoardWeb-Jakarta</module>
+
   </modules>
  
 </project>
