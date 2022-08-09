@@ -21,7 +21,7 @@
   </properties>
 
   <repositories>
-    <!-- Spring 마일즈스톤 버전을 사용하기 위해 레파지토리 설정이 필요함. -->
+    <!-- Spring 마일스톤 버전을 사용하기 위해 레파지토리 설정이 필요함. -->
     <repository>
       <id>spring-milestones-repo</id>
       <name>Spring Milestones Repository</name>

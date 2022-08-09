@@ -25,13 +25,13 @@
 
 
 
-### 1. 스프링 마일즈 스톤 레파지토리를 추가
+### 1. 스프링 마일스톤 레파지토리를 추가
 
-스프링 6버전이 아직 마일즈스톤 단계여서 Maven 공식에서는 라이브러리가 없음 아래와 같이 레파지토리 추가함.
+스프링 6버전이 아직 마일스톤 단계여서 Maven 공식에서는 라이브러리가 없음 아래와 같이 레파지토리 추가함.
 
 ```xml
   <repositories>
-    <!-- Spring 마일즈스톤 버전을 사용하기 위해 레파지토리 설정이 필요함. -->
+    <!-- Spring 마일스톤 버전을 사용하기 위해 레파지토리 설정이 필요함. -->
     <repository>
       <id>spring-milestones-repo</id>
       <name>Spring Milestones Repository</name>
@@ -42,9 +42,9 @@
 
 
 
-### 2.  javax 관련 모듈들 jakarta 모듈로 변경
+### 2.  javax 관련 모듈을 jakarta 모듈로 변경
 
-jetty 컨테이너에서 제공이 되는 것은 provided로 스코프로하고 대부분 쓰던거 맞춰서 바꿈.
+jetty 컨테이너에서 제공이 되는 것은 provided 스코프로 하고 대부분 쓰던거 맞춰서 바꿈.
 
 ```xml
     <!-- @Inject -->
@@ -241,7 +241,7 @@ import jakarta.xml.bind.annotation.XmlTransient;
 
 * Hibernate 6에서 없는 클래스를 import하는 부분이있어 방식을 바꿈.
 
-  원래 `HibernateJpaVendorAdapter` 를 빈으로 설정해서 알려줬는데... 이 클래스에 Hibernate 6에서 없는 클래스가 있길레 `SpringHibernateJpaPersistenceProvider`를 전달하도록 바꿈.
+  원래 `HibernateJpaVendorAdapter` 를 빈으로 설정해서 알려줬는데... 이 클래스에서 Hibernate 6에는 없는 클래스를 import 하고 있길레`SpringHibernateJpaPersistenceProvider`를 전달하도록 바꿈.
 
   ```xml
   <!-- 스프링과 JPA 연동 설정 -->
