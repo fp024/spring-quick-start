@@ -20,7 +20,7 @@
     <org.aspectj-version>1.9.9.1</org.aspectj-version>
 
     <hikaricp.version>5.0.1</hikaricp.version>
-    <mybatis.version>3.5.10</mybatis.version>
+    <mybatis.version>3.5.11</mybatis.version>
     <mybatis-dynamic-sql.version>1.4.0</mybatis-dynamic-sql.version>
     <mybatis-spring.version>2.0.7</mybatis-spring.version>
     <hibernate.version>5.6.11.Final</hibernate.version>
@@ -36,7 +36,7 @@
     <!--- 2.0.0 버전부터는 Servlet 5.0 과 Java 17을 요구한다. 그 이하버전은 1.1.4버전을 사용하자. -->
     <java-time-jsptags.version>1.1.4</java-time-jsptags.version> 
 
-    <junit.jupiter.version>5.9.0</junit.jupiter.version>
+    <junit.jupiter.version>5.9.1</junit.jupiter.version>
 
     <h2.version>2.1.214</h2.version>
     <jetty.version>10.0.12</jetty.version>
