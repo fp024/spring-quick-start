@@ -13,7 +13,7 @@
   <packaging>war</packaging>
 
   <properties>
-    <org.springframework-version>6.0.0-M6</org.springframework-version>
+    <org.springframework-version>6.0.0-RC1</org.springframework-version>
     <!-- Hibernate 6.x를 정식 지원하지 않는 것 같긴하지만.. 6.1.2.Final 최신으로 사용해보자! -->
     <hibernate.version>6.1.4.Final</hibernate.version>
     <java-time-jsptags.version>2.0.0</java-time-jsptags.version>
@@ -279,11 +279,11 @@
       <plugins>
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.2</version>
+          <version>${maven-surefire-plugin.version}</version>
         </plugin>
         <plugin>
           <artifactId>maven-failsafe-plugin</artifactId>
-          <version>2.22.2</version>
+          <version>${maven-failsafe-plugin.version}</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -291,7 +291,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.10.1</version>
+        <version>${maven-compiler-plugin.version}</version>
         <configuration>
           <source>${java-version}</source>
           <target>${java-version}</target>
@@ -307,7 +307,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-toolchains-plugin</artifactId>
-        <version>3.0.0</version>
+        <version>${maven-toolchains-plugin.version}</version>
         <executions>
           <execution>
             <goals>
@@ -327,7 +327,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
-        <version>3.1.0</version>
+        <version>${exec-maven-plugin.version}</version>
         <configuration>
           <mainClass>org.test.int1.Main</mainClass>
         </configuration>

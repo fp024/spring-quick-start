@@ -40,6 +40,27 @@
 
     <h2.version>2.1.214</h2.version>
     <jetty.version>10.0.12</jetty.version>
+    
+    <!-- Maven 플러그인 버전 모음 -->
+    <!-- Maven 최신 버전을 쓰면 버전정의를 따로 안해도 될 것 같은데... 일단 정의가 있는 것에 대해서만 버전명시를 했다. -->
+    <exec-maven-plugin.version>3.1.0</exec-maven-plugin.version>
+    <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+    <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+    <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
+    <maven-clean-plugin.version>3.2.0</maven-clean-plugin.version>
+    <maven-resources-plugin.version>3.3.0</maven-resources-plugin.version>
+    <maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
+    <maven-toolchains-plugin.version>3.1.0</maven-toolchains-plugin.version>
+    <maven-deploy-plugin.version>3.0.0</maven-deploy-plugin.version>
+
+    <maven-install-plugin.version>3.0.1</maven-install-plugin.version>
+
+    <maven-site-plugin.version>3.12.1</maven-site-plugin.version>
+    <maven-project-info-reports-plugin.version>3.4.1</maven-project-info-reports-plugin.version>
+
+    <!-- 이 플러그인은 안 쓸 것 같은데...-->
+    <maven-eclipse-plugin.version>2.10</maven-eclipse-plugin.version>
+
   </properties>
 
   <modules>
