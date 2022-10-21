@@ -259,7 +259,7 @@
           <compilerArgs>
             <arg>-Xlint:all</arg>
             <arg>-Xlint:-processing</arg>  <!-- No processor claimed any of these annotations 경고는 노출되지않게 설정 -->
-            <!--<arg>-Xlint:-path</arg>--> <!--  bad path element 경고는 노출되지않게 설정 -->
+            <arg>-Xlint:-path</arg> <!--  bad path element 경고는 노출되지않게 설정 -->
           </compilerArgs>
           <showWarnings>true</showWarnings>
           <showDeprecation>true</showDeprecation>
