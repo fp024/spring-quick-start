@@ -15,7 +15,7 @@
   <properties>
     <org.springframework-version>6.0.0-RC2</org.springframework-version>
     <!-- Hibernate 6.x를 정식 지원하지 않는 것 같긴하지만.. 6.1.2.Final 최신으로 사용해보자! -->
-    <hibernate.version>6.1.4.Final</hibernate.version>
+    <hibernate.version>6.1.5.Final</hibernate.version>
     <java-time-jsptags.version>2.0.0</java-time-jsptags.version>
     <jetty.version>11.0.12</jetty.version>
   </properties>
