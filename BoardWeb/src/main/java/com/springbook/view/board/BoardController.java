@@ -4,7 +4,6 @@ import com.google.common.base.Strings;
 import com.springbook.biz.board.BoardListVO;
 import com.springbook.biz.board.BoardService;
 import com.springbook.biz.board.BoardVO;
-import com.springbook.biz.board.impl.BoardDAO;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedHashMap;
@@ -29,13 +28,14 @@ public class BoardController {
 
   @RequestMapping(value = "/dataTransform.do", produces = "application/json; charset=UTF-8")
   public @ResponseBody BoardListVO dataTransform(BoardVO vo) {
-    logger.info("vo: {}", vo);
+    logger.info("BoardVO: {}", vo);
     vo.setSearchCondition("TITLE");
     vo.setSearchKeyword("");
     List<BoardVO> boardList = boardService.getBoardList(vo);
 
     BoardListVO boardListVO = new BoardListVO();
     boardListVO.setBoardList(boardList);
+    logger.info("BoardListVO: {}", boardListVO);
     return boardListVO;
   }
 
@@ -60,7 +60,7 @@ public class BoardController {
   }
 
   @RequestMapping("/updateBoard.do")
-  public String updateBoard(@ModelAttribute("board") BoardVO vo, BoardDAO boardDAO) {
+  public String updateBoard(@ModelAttribute("board") BoardVO vo) {
     logger.warn("업데이트할 board 정보: {}", vo);
     boardService.updateBoard(vo);
     return "getBoardList.do";

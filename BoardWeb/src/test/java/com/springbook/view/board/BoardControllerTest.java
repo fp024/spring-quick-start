@@ -11,11 +11,12 @@ import com.springbook.biz.board.BoardVO;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.Map;
+import org.fp024.util.GsonHelper;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.GsonHttpMessageConverter;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -40,10 +41,12 @@ class BoardControllerTest {
   @BeforeEach
   void setUp() {
     // this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
-    this.mockMvc = MockMvcBuilders.standaloneSetup(new BoardController(service)).build();
+    this.mockMvc =
+        MockMvcBuilders.standaloneSetup(new BoardController(service))
+            .setMessageConverters(new GsonHttpMessageConverter(GsonHelper.gson()))
+            .build();
   }
 
-  @Disabled("이 테스트가 왜 ? 500 응답을 반환하는지 잘 모르겠음. ㅠㅠ 실제 실행시는 문제 없는데.. 테스트에선 500반환함, 비활성화해두고 나중에 다시보다..")
   @Test
   void dataTransform() throws Exception {
 
@@ -52,8 +55,8 @@ class BoardControllerTest {
             MockMvcRequestBuilders.post("/dataTransform.do")
                 .accept(MediaType.APPLICATION_JSON)
                 .characterEncoding(StandardCharsets.UTF_8)
-                .content(GSON.toJson(Map.of("title", "제목", "searchKeyword", "검색키워드")))
-                .contentType(MediaType.APPLICATION_JSON))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(GSON.toJson(Map.of("title", "제목", "searchKeyword", "검색키워드"))))
         .andDo(print())
         .andExpect(status().isOk());
   }
