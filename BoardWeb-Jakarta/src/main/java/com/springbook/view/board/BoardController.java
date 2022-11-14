@@ -10,8 +10,9 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,12 +21,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Slf4j
+@RequiredArgsConstructor
 @Controller
 @SessionAttributes("board")
 public class BoardController {
-  @Autowired private BoardService boardService;
+  private final BoardService boardService;
 
-  @RequestMapping(value = "/dataTransform.do", produces = "application/json; charset=UTF-8")
+  @RequestMapping(value = "/dataTransform.do", produces = MediaType.APPLICATION_JSON_VALUE)
   public @ResponseBody BoardListVO dataTransform(BoardVO vo) {
     logger.info("vo: {}", vo);
     vo.setSearchCondition("TITLE");
@@ -50,7 +52,7 @@ public class BoardController {
     boardService.insertBoard(vo);
 
     logger.info("vo.getUploadFile(): {}", vo.getUploadFile());
-    if (!vo.getUploadFile().isEmpty()) {
+    if (vo.getUploadFile() != null && !vo.getUploadFile().isEmpty()) {
       String filename = vo.getUploadFile().getOriginalFilename();
       vo.getUploadFile().transferTo(new File("C:/upload/BoardWeb/" + filename));
       // 메서드가 끝나면 자동으로 업로드된 파일이 정리됨...

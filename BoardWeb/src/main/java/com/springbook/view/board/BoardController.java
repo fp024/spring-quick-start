@@ -1,12 +1,17 @@
 package com.springbook.view.board;
 
+import com.google.common.base.Strings;
+import com.springbook.biz.board.BoardListVO;
+import com.springbook.biz.board.BoardService;
+import com.springbook.biz.board.BoardVO;
+import com.springbook.biz.board.impl.BoardDAO;
 import java.io.File;
 import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,19 +19,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.google.common.base.Strings;
-import com.springbook.biz.board.BoardListVO;
-import com.springbook.biz.board.BoardService;
-import com.springbook.biz.board.BoardVO;
-import com.springbook.biz.board.impl.BoardDAO;
-
-import lombok.extern.slf4j.Slf4j;
-
 @Slf4j
+@RequiredArgsConstructor
 @Controller
 @SessionAttributes("board")
 public class BoardController {
-  @Autowired private BoardService boardService;
+
+  private final BoardService boardService;
 
   @RequestMapping(value = "/dataTransform.do", produces = "application/json; charset=UTF-8")
   public @ResponseBody BoardListVO dataTransform(BoardVO vo) {
@@ -52,7 +51,7 @@ public class BoardController {
   public String insertBoard(BoardVO vo) throws IOException {
     boardService.insertBoard(vo);
 
-    if (!vo.getUploadFile().isEmpty()) {
+    if (vo.getUploadFile() != null && !vo.getUploadFile().isEmpty()) {
       String filename = vo.getUploadFile().getOriginalFilename();
       vo.getUploadFile().transferTo(new File("D:/Temp/BoardWeb/" + filename));
     }
