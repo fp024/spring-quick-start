@@ -15,21 +15,24 @@
   <packaging>war</packaging>
 
   <properties>
-    <org.springframework-version>6.0.0-RC4</org.springframework-version>
+    <org.springframework-version>6.0.0</org.springframework-version>
     <hibernate.version>6.1.5.Final</hibernate.version>
     <java-time-jsptags.version>2.0.0</java-time-jsptags.version>
     <jetty.version>11.0.12</jetty.version>
   </properties>
 
+  <!-- Spring 마일스톤 버전을 사용하기 위해서는 레파지토리 설정이 필요함. -->
+  <!-- Spring 6.0.0이 정식 출시되었으므로, 주석으로 두자. -->
+  <!-- https://spring.io/blog/2022/11/16/spring-framework-6-0-goes-ga -->
+  <!--
   <repositories>
-    <!-- Spring 마일스톤 버전을 사용하기 위해 레파지토리 설정이 필요함. -->
     <repository>
       <id>spring-milestones-repo</id>
       <name>Spring Milestones Repository</name>
       <url>https://repo.spring.io/milestone</url>
     </repository>
   </repositories>
-
+  -->
   <dependencyManagement>
     <dependencies>
       <dependency>
