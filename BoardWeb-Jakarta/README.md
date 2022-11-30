@@ -1,9 +1,12 @@
-# Jakarta Servlet 5.0 적용
+# Jakarta Servlet 6.0 적용
 
 > 처음은 JPA 3.0을 적용시켜보고 싶어서였지만... 기왕 바꿔 보는거 다 올려봤다. 😅
 >
 > * 주요 업그레이드된 라이브러리
->   * Spring 6.x, Hibernate 6.x, Jetty 11.x
+>   * Spring 6.x
+>   * Hibernate 6.x,
+>   * ~~Jetty 11.x~~(12버전나오면 사용 예정)
+>     * Tomcat 10.1.x
 
 
 
@@ -15,17 +18,17 @@
 
 ```xml
 <properties>
-  <org.springframework-version>6.0.0-M5</org.springframework-version>
+  <org.springframework-version>6.0.2</org.springframework-version>
   <!-- Hibernate 6.x를 정식 지원하지 않는 것 같긴하지만.. 6.1.2.Final 최신으로 사용해보자! -->
-  <hibernate.version>6.1.2.Final</hibernate.version>
+  <hibernate.version>6.1.5.Final</hibernate.version>
   <java-time-jsptags.version>2.0.0</java-time-jsptags.version>
-  <jetty.version>11.0.11</jetty.version>
+  <jetty.version>11.0.12</jetty.version>
 </properties>
 ```
 
 
 
-### 1. 스프링 마일스톤 레파지토리를 추가
+### 1. 스프링 마일스톤 레파지토리를 추가  
 
 스프링 6버전이 아직 마일스톤 단계여서 Maven 공식에서는 라이브러리가 없음 아래와 같이 레파지토리 추가함.
 
@@ -40,7 +43,7 @@
   </repositories>
 ```
 
-
+* 현시점에서는 정식으로 나와서... 기본으로 사용해도 됨
 
 ### 2.  javax 관련 모듈을 jakarta 모듈로 변경
 
@@ -73,7 +76,7 @@ jetty 컨테이너에서 제공이 되는 것은 provided 스코프로 하고 �
     <dependency>
       <groupId>jakarta.servlet</groupId>
       <artifactId>jakarta.servlet-api</artifactId>
-      <version>5.0.0</version>
+      <version>6.0.0</version>
       <scope>provided</scope>
     </dependency>
     <!--
@@ -120,19 +123,25 @@ jetty 컨테이너에서 제공이 되는 것은 provided 스코프로 하고 �
     </dependency>
 ```
 
+* ✨ Spring 6.x를 사용하더라도 Servlet 5.0 호환이 되서 Jetty 11에서도 잘 돌아감
 
+* ✨ 단지 테스트 환경에서는 Servlet 6.0 환경으로 사용해야함.
+
+  * MockMvc 같은 것 사용해서 테스트 할 경오.
+
+  
 
 ### 3.  web.xml에 정의 변경
 
-3.0기준으로 정의했던 부분 5.0으로 바꿈.
+3.0기준으로 정의했던 부분 6.0으로 바꿈.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app
   xmlns="https://jakarta.ee/xml/ns/jakartaee"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
-  version="5.0"
+  xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+  version="6.0"
   metadata-complete="false"
 >
 ```
@@ -315,17 +324,21 @@ public class NestedIOException1 extends IOException {
 
 이부분은 나중에 바뀔수도 있겠다. mybatis-spring의 문제인지? 뭔지 정확하게 모르겠는데...
 
+* 🎇 mybatis-spring 문제 맞음..  mybatis-spring 3.x 버전이 출시되면 해결될 것임.
+  * https://github.com/fp024/spring-quick-start/issues/5
+
 
 
 
 
 ## 기타
 
-* Servlet 5.0 적용과는 별개의 문제이긴한데.. `LocalDateTime` 관련해서 `Gson`컨버터를 사용자 정의하지 않아서 오류가 나는 부분이 있었다 관련해서 추가함.
+* Servlet 5.0 적용과는 별개의 문제이긴한데.. `LocalDateTime` 관련해서 `Gson`컨버터를 사용자 정의하지 않아서 오류가 나는 부분이 있었다. 관련해서 추가함.
 
 
 
 ## 의견
 
 * Servlet 5.0 업그레이드 과정에서 문제가 많을 줄 알았는데... 큰 문제없이 끝난것 같다..🎉
+* Servlet 6.0 으로 또 올리게 되었는데... 나중에 Jetty 12 나오면 꼭 업그레이드 하자 😅
 
