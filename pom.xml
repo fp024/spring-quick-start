@@ -41,7 +41,7 @@
     <hamcrest.version>2.2</hamcrest.version>
 
     <h2.version>2.1.214</h2.version>
-    <jetty.version>10.0.12</jetty.version>
+    <jetty.version>10.0.13</jetty.version>
     
     <!-- Maven 플러그인 버전 모음 -->
     <!-- Maven 최신 버전을 쓰면 버전정의를 따로 안해도 될 것 같은데... 일단 정의가 있는 것에 대해서만 버전명시를 했다. -->
