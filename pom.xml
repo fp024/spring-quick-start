@@ -17,7 +17,7 @@
 
     <org.springframework-version>5.3.24</org.springframework-version>
 
-    <org.aspectj-version>1.9.9.1</org.aspectj-version>
+    <org.aspectj-version>1.9.19</org.aspectj-version>
 
     <hikaricp.version>5.0.1</hikaricp.version>
     <mybatis.version>3.5.11</mybatis.version>
