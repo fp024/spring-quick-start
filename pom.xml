@@ -20,16 +20,16 @@
     <org.aspectj-version>1.9.19</org.aspectj-version>
 
     <hikaricp.version>5.0.1</hikaricp.version>
-    <mybatis.version>3.5.12</mybatis.version>
+    <mybatis.version>3.5.13</mybatis.version>
     <mybatis-dynamic-sql.version>1.4.1</mybatis-dynamic-sql.version>
     <mybatis-spring.version>2.1.0</mybatis-spring.version>
     <hibernate.version>5.6.15.Final</hibernate.version>
 
-    <log4j2.version>2.19.0</log4j2.version>
+    <log4j2.version>2.20.0</log4j2.version>
 
     <guava.version>31.1-jre</guava.version>
 
-    <commons-fileupload.version>1.4</commons-fileupload.version>
+    <commons-fileupload.version>1.5</commons-fileupload.version>
 
     <gson.version>2.10.1</gson.version>
 
