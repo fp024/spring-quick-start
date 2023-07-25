@@ -15,7 +15,7 @@
 
     <lombok.version>1.18.28</lombok.version>
 
-    <org.springframework-version>5.3.28</org.springframework-version>
+    <org.springframework-version>5.3.29</org.springframework-version>
 
     <org.aspectj-version>1.9.19</org.aspectj-version>
 
@@ -36,7 +36,7 @@
     <!--- 2.0.0 버전부터는 Servlet 5.0 과 Java 17을 요구한다. 그 이하버전은 1.1.4버전을 사용하자. -->
     <java-time-jsptags.version>1.1.4</java-time-jsptags.version> 
 
-    <junit.jupiter.version>5.9.3</junit.jupiter.version>
+    <junit.jupiter.version>5.10.0</junit.jupiter.version>
     <assertj.version>3.24.2</assertj.version>
     <hamcrest.version>2.2</hamcrest.version>
 
