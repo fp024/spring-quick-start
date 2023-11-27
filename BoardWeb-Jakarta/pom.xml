@@ -15,11 +15,11 @@
   <packaging>war</packaging>
 
   <properties>
-    <org.springframework-version>6.0.11</org.springframework-version>
-    <hibernate.version>6.2.7.Final</hibernate.version>
-    <mybatis-spring.version>3.0.2</mybatis-spring.version>    
+    <org.springframework-version>6.1.0</org.springframework-version>
+    <hibernate.version>6.3.2.Final</hibernate.version>
+    <mybatis-spring.version>3.0.3</mybatis-spring.version>    
     <java-time-jsptags.version>2.0.0</java-time-jsptags.version>
-    <jetty.version>11.0.15</jetty.version>
+    <jetty.version>11.0.18</jetty.version>
   </properties>
 
   <!-- Spring 마일스톤 버전을 사용하기 위해서는 레파지토리 설정이 필요함. -->
