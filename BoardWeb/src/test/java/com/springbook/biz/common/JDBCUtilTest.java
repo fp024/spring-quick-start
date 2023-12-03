@@ -13,7 +13,7 @@ class JDBCUtilTest {
     Properties prop = JDBCUtil.getDBProperties();
 
     assertEquals("org.h2.Driver", prop.get("jdbc.driver"));
-    assertEquals("jdbc:h2:tcp://h2db-host/~/h2db-data/spring-quick-start;TRACE_LEVEL_SYSTEM_OUT=0", prop.get("jdbc.url"));
+    assertEquals("jdbc:h2:mem:spring-boot-quick-start;DB_CLOSE_DELAY=-1", prop.get("jdbc.url"));
     assertEquals("sa", prop.get("jdbc.username"));
     assertEquals("sa", prop.get("jdbc.password"));
   }
