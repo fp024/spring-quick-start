@@ -19,7 +19,15 @@
     <hibernate.version>6.4.0.Final</hibernate.version>
     <mybatis-spring.version>3.0.3</mybatis-spring.version>    
     <java-time-jsptags.version>2.0.0</java-time-jsptags.version>
-    <jetty.version>11.0.18</jetty.version>
+    <jetty.version>12.0.3</jetty.version>
+
+    <jakarta.servlet-api.version>6.0.0</jakarta.servlet-api.version>
+    <jakarta.servlet.jsp-api.version>3.1.1</jakarta.servlet.jsp-api.version>
+    <jakarta.servlet.jsp.jstl-api.version>3.0.0</jakarta.servlet.jsp.jstl-api.version>
+    <jakarta.servlet.jsp.jstl.version>3.0.1</jakarta.servlet.jsp.jstl.version>
+    <jakarta.xml.bind-api.version>4.0.1</jakarta.xml.bind-api.version>
+
+    <jakarta.inject-api.version>2.0.1</jakarta.inject-api.version>
   </properties>
 
   <!-- Spring 마일스톤 버전을 사용하기 위해서는 레파지토리 설정이 필요함. -->
@@ -183,7 +191,7 @@
     <dependency>
       <groupId>jakarta.inject</groupId>
       <artifactId>jakarta.inject-api</artifactId>
-      <version>2.0.1</version>
+      <version>${jakarta.inject-api.version}</version>
     </dependency>
 
     <!-- Servlet -->
@@ -199,7 +207,7 @@
     <dependency>
       <groupId>jakarta.servlet</groupId>
       <artifactId>jakarta.servlet-api</artifactId>
-      <version>6.0.0</version>
+      <version>${jakarta.servlet-api.version}</version>
       <scope>provided</scope>
     </dependency>
     <!--
@@ -213,7 +221,7 @@
     <dependency>
       <groupId>jakarta.servlet.jsp</groupId>
       <artifactId>jakarta.servlet.jsp-api</artifactId>
-      <version>3.1.1</version>
+      <version>${jakarta.servlet.jsp-api.version}</version>
       <scope>provided</scope>
     </dependency>
     <!--
@@ -227,24 +235,30 @@
     <dependency>
       <groupId>jakarta.servlet.jsp.jstl</groupId>
       <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
-      <version>3.0.0</version>
+      <version>${jakarta.servlet.jsp.jstl-api.version}</version>
       <scope>provided</scope>
     </dependency>
 
     <dependency>
       <groupId>org.glassfish.web</groupId>
       <artifactId>jakarta.servlet.jsp.jstl</artifactId>
-      <version>3.0.1</version>
+      <version>${jakarta.servlet.jsp.jstl.version}</version>
       <scope>provided</scope>
     </dependency>
 
     <dependency>
       <groupId>jakarta.xml.bind</groupId>
       <artifactId>jakarta.xml.bind-api</artifactId>
-      <version>4.0.0</version>
-      <scope>provided</scope>
+      <version>${jakarta.xml.bind-api.version}</version>
     </dependency>
 
+    <!--
+    <dependency>
+      <groupId>org.glassfish.jaxb</groupId>
+      <artifactId>jaxb-runtime</artifactId>
+      <version>4.0.4</version>
+    </dependency>
+    -->
 
     <!-- https://github.com/sargue/java-time-jsptags -->
     <dependency>
@@ -362,9 +376,9 @@
 
       <!-- Jetty 서버 구동 -->
       <plugin>
-        <!-- https://www.eclipse.org/jetty/documentation/jetty-10/programming-guide/index.html#jetty-maven-plugin -->
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-maven-plugin</artifactId>
+        <!-- https://www.eclipse.org/jetty/documentation/jetty-12/programming-guide/index.html#jetty-maven-plugin -->
+        <groupId>org.eclipse.jetty.ee10</groupId>
+        <artifactId>jetty-ee10-maven-plugin</artifactId>
         <version>${jetty.version}</version>
         <configuration>
           <webApp>
@@ -379,10 +393,9 @@
           <stopPort>8999</stopPort>
           <!-- 9.x 설정: <scanIntervalSeconds> 대신 <scan> 사용 -->
           <!--
-            변경 감지 자동 재시작시 ContextLoaderListener가 제대로 실행되지 않는 오류가 발생한다.
-            설정을 -1로하여 자동 재시작이 일어나지 않도록 한다.
-           -->
-          <scan>-1</scan>
+            변경 감지 재시작이 현재환경에서는 잘되어서, ENTER를 누르면 재시작되도록 설정을 바꿨다.
+          -->
+          <scan>0</scan>
           <!-- 9.x 설정: <webApp>의 기본값이 ${project.baseDir}/src/main/webapp/WEB-INF/web.xml 으로 정의되어 일부러 선언할 필요는 없음.-->
           <scanTargetPatterns>
             <scanTargetPattern>

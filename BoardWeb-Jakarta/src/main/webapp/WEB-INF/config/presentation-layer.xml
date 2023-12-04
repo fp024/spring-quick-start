@@ -9,8 +9,6 @@
 		<mvc:message-converters>
 			<bean class="org.fp024.util.CustomGsonMessageConvertor" />
 		</mvc:message-converters>
-
-
 	</mvc:annotation-driven>
 	<!-- annotation-driven 을 설정하면 HttpMessageConverter를 구현한 모든 변환기가 생성됨. -->
 
@@ -56,6 +54,5 @@
 		</bean>
 
 	</mvc:interceptors>
-
 
 </beans>
