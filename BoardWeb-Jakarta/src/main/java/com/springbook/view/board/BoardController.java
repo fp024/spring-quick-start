@@ -15,7 +15,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -27,7 +29,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 public class BoardController {
   private final BoardService boardService;
 
-  @RequestMapping(value = "/dataTransform.do", produces = MediaType.APPLICATION_JSON_VALUE)
+  @RequestMapping(value = "/dataTransform", produces = MediaType.APPLICATION_JSON_VALUE)
   public @ResponseBody BoardListVO dataTransform(BoardVO vo) {
     logger.info("vo: {}", vo);
     vo.setSearchCondition("TITLE");
@@ -47,7 +49,10 @@ public class BoardController {
     return conditionMap;
   }
 
-  @RequestMapping("/insertBoard.do")
+  @GetMapping("/insertBoard")
+  public void insertBoard() {}
+
+  @PostMapping("/insertBoard")
   public String insertBoard(BoardVO vo) throws IOException {
     boardService.insertBoard(vo);
 
@@ -60,25 +65,25 @@ public class BoardController {
       // 웹서버에 파일을 쌓아두지 말라는 건가?
     }
 
-    return "getBoardList.do";
+    return "redirect:getBoardList";
   }
 
-  @RequestMapping("/updateBoard.do")
+  @PostMapping("/updateBoard")
   public String updateBoard(@ModelAttribute("board") BoardVO vo, BoardDAO boardDAO) {
     logger.warn("업데이트할 board 정보: {}", vo);
     boardService.updateBoard(vo);
-    return "getBoardList.do";
+    return "redirect:getBoardList";
   }
 
-  @RequestMapping("/deleteBoard.do")
+  @PostMapping("/deleteBoard")
   public String deleteBoard(BoardVO vo) {
     boardService.deleteBoard(vo);
-    return "getBoardList.do";
+    return "redirect:getBoardList";
   }
 
-  @RequestMapping("/getBoardList.do")
+  @GetMapping("/getBoardList")
   public String getBoardList(BoardVO vo, Model model) {
-    logger.info("getBoardList.do {}", vo);
+    logger.info("getBoardList {}", vo);
 
     if (Strings.isNullOrEmpty(vo.getSearchCondition())) {
       vo.setSearchCondition("TITLE");
@@ -90,12 +95,12 @@ public class BoardController {
 
     List<BoardVO> boardList = boardService.getBoardList(vo);
     model.addAttribute("boardList", boardList);
-    return "getBoardList.jsp";
+    return "getBoardList";
   }
 
-  @RequestMapping("/getBoard.do")
+  @GetMapping("/getBoard")
   public String getBoard(BoardVO vo, Model model) {
     model.addAttribute("board", boardService.getBoard(vo)); // Model 정보 저장
-    return "getBoard.jsp"; // View 이름 리턴
+    return "getBoard"; // View 이름 리턴
   }
 }

@@ -13,10 +13,10 @@
         <Logger name="com.springbook.view" level="debug"/>
          
         <!-- 3rdparty Loggers -->
-        <Logger name="org.springframework.core" level="info"/>      
-        <Logger name="org.springframework.beans" level="info"/>     
-        <Logger name="org.springframework.context" level="info"/>           
-        <Logger name="org.springframework.web" level="info"/>
+        <Logger name="org.springframework.core" level="info"/>
+        <Logger name="org.springframework.beans" level="info"/>
+        <Logger name="org.springframework.context" level="info"/>
+        <Logger name="org.springframework.web" level="debug"/>
 
         <!-- Root Logger -->
         <Root level="info">

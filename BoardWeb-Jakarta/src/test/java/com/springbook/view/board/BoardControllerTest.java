@@ -2,6 +2,7 @@ package com.springbook.view.board;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
@@ -50,7 +51,7 @@ class BoardControllerTest {
   void dataTransform() throws Exception {
     mockMvc
         .perform(
-            MockMvcRequestBuilders.post("/dataTransform.do")
+            MockMvcRequestBuilders.post("/dataTransform")
                 .accept(MediaType.APPLICATION_JSON)
                 .characterEncoding(StandardCharsets.UTF_8)
                 .content(GSON.toJson(Map.of("title", "제목", "searchKeyword", "검색키워드")))
@@ -65,12 +66,12 @@ class BoardControllerTest {
   void insertBoard() throws Exception {
     mockMvc
         .perform(
-            MockMvcRequestBuilders.post("/insertBoard.do") //
+            MockMvcRequestBuilders.post("/insertBoard") //
                 .param("title", "제목")
                 .param("writer", "작성자")
                 .param("content", "본문"))
-        .andExpect(status().isOk())
-        .andExpect(view().name("getBoardList.do"))
+        .andExpect(status().isFound())
+        .andExpect(redirectedUrl("getBoardList"))
         .andDo(print());
   }
 
@@ -87,10 +88,10 @@ class BoardControllerTest {
 
     mockMvc
         .perform(
-            MockMvcRequestBuilders.post("/updateBoard.do") //
+            MockMvcRequestBuilders.post("/updateBoard") //
                 .sessionAttr("board", boardVO))
-        .andExpect(status().isOk())
-        .andExpect(view().name("getBoardList.do"))
+        .andExpect(status().isFound())
+        .andExpect(redirectedUrl("getBoardList"))
         .andDo(print());
   }
 
@@ -101,10 +102,10 @@ class BoardControllerTest {
 
     mockMvc
         .perform(
-            MockMvcRequestBuilders.post("/deleteBoard.do") //
+            MockMvcRequestBuilders.post("/deleteBoard") //
                 .param("seq", "1"))
-        .andExpect(status().isOk())
-        .andExpect(view().name("getBoardList.do"))
+        .andExpect(status().isFound())
+        .andExpect(redirectedUrl("getBoardList"))
         .andDo(print());
   }
 
@@ -112,23 +113,23 @@ class BoardControllerTest {
   void getBoardList() throws Exception {
     mockMvc
         .perform(
-            MockMvcRequestBuilders.post("/getBoardList.do") //
+            MockMvcRequestBuilders.get("/getBoardList/") //
                 .param("searchCondition", "TITLE")
                 .param("searchKeyword", "제목 검색 키워드"))
         .andExpect(status().isOk())
         .andExpect(model().attributeExists("boardList"))
         // 게시물이 존재하지 않아도 반환 List 자체가 null이 아닌 빈 리스트 객체라서 모델이 있는 것을 간주한다.
-        .andExpect(view().name("getBoardList.jsp"))
+        .andExpect(view().name("getBoardList"))
         .andDo(print());
   }
 
   @Test
   void getBoard() throws Exception {
     mockMvc
-        .perform(MockMvcRequestBuilders.get("/getBoard.do").param("seq", "1"))
+        .perform(MockMvcRequestBuilders.get("/getBoard/").param("seq", "1"))
         .andExpect(status().isOk())
         // .andExpect(model().attributeExists("board")) // 게시물이 존재하여 값을 받아올 수 있으면 참이된다.
-        .andExpect(view().name("getBoard.jsp"))
+        .andExpect(view().name("getBoard"))
         .andDo(print());
   }
 }

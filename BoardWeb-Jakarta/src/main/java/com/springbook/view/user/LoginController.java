@@ -15,14 +15,14 @@ public class LoginController {
 
   private final UserService userService;
 
-  @RequestMapping(value = "/login.do", method = RequestMethod.GET)
+  @RequestMapping(value = "/login", method = RequestMethod.GET)
   public String loginView(UserVO vo) {
     vo.setId("test");
     vo.setPassword("test123");
-    return "login.jsp";
+    return "login";
   }
 
-  @RequestMapping(value = "/login.do", method = RequestMethod.POST)
+  @RequestMapping(value = "/login", method = RequestMethod.POST)
   public String login(UserVO vo, HttpSession session) {
     if (Strings.isNullOrEmpty(vo.getId())) {
       throw new IllegalArgumentException("아이디는 반드시 입력해야합니다.");
@@ -31,9 +31,9 @@ public class LoginController {
     UserVO user = userService.getUser(vo);
     if (user != null) {
       session.setAttribute("userName", user.getName());
-      return "getBoardList.do";
+      return "redirect:getBoardList";
     } else {
-      return "login.jsp";
+      return "login";
     }
   }
 }
