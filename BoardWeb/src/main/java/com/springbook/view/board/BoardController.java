@@ -4,8 +4,9 @@ import com.google.common.base.Strings;
 import com.springbook.biz.board.BoardListVO;
 import com.springbook.biz.board.BoardService;
 import com.springbook.biz.board.BoardVO;
-import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +26,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 public class BoardController {
 
   private final BoardService boardService;
+
+  private final Path uploadPath = Path.of("C:/upload/BoardWeb/");
 
   @RequestMapping(value = "/dataTransform.do", produces = "application/json; charset=UTF-8")
   public @ResponseBody BoardListVO dataTransform(BoardVO vo) {
@@ -53,7 +56,8 @@ public class BoardController {
 
     if (vo.getUploadFile() != null && !vo.getUploadFile().isEmpty()) {
       String filename = vo.getUploadFile().getOriginalFilename();
-      vo.getUploadFile().transferTo(new File("D:/Temp/BoardWeb/" + filename));
+      Files.createDirectories(uploadPath);
+      vo.getUploadFile().transferTo(uploadPath.resolve(filename));
     }
 
     return "getBoardList.do";

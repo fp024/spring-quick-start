@@ -24,15 +24,14 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 @SpringJUnitWebConfig(
     locations = {
-        "classpath:applicationContext.xml", //
-        "file:src/main/webapp/WEB-INF/config/presentation-layer.xml"
+      "classpath:applicationContext.xml", //
+      "file:src/main/webapp/WEB-INF/config/presentation-layer.xml"
     })
 class BoardControllerTest {
 
   private static final Gson GSON = new Gson();
 
-  @Autowired
-  private BoardService service;
+  @Autowired private BoardService service;
 
   // @Autowired private WebApplicationContext ctx;
 
@@ -127,7 +126,9 @@ class BoardControllerTest {
   @Test
   void getBoard() throws Exception {
     mockMvc
-        .perform(MockMvcRequestBuilders.get("/getBoard.do").param("seq", "1"))
+        .perform(
+            MockMvcRequestBuilders.get("/getBoard.do") //
+                .param("seq", "1"))
         .andExpect(status().isOk())
         // .andExpect(model().attributeExists("board")) // 게시물이 존재하여 값을 받아올 수 있으면 참이된다.
         .andExpect(view().name("getBoard.jsp"))

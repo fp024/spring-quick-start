@@ -1,60 +1,44 @@
 package com.springbook.biz.board.impl;
 
+import com.springbook.biz.board.BoardVO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
-
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import com.springbook.biz.board.BoardVO;
-
-import lombok.extern.slf4j.Slf4j;
-
 @Slf4j
 @Repository("boardDAOSpring")
 public class BoardDAOSpring {
   /** SQL 명령어 들... */
-  @SuppressWarnings("unused")
   private static final String BOARD_INSERT =
       "INSERT INTO BOARD (seq, title, writer, content) VALUES("
           + "(SELECT NVL(MAX(Seq),0)+1 FROM board) "
           + ",?,?,?)";
 
+  @SuppressWarnings("unused")
   private static final String BOARD_INSERT2 =
-      "INSERT INTO BOARD (seq, title, writer, content) VALUES("
-          + "?"
-          + ",?,?,?)";
+      "INSERT INTO BOARD (seq, title, writer, content) VALUES(" + "?" + ",?,?,?)";
 
   private static final String BOARD_UPDATE =
-      "UPDATE board "
-    + "   SET title=? "
-    + "       content=? "
-    + " WHERE seq=? ";
+      "UPDATE board " + "   SET title=? " + "       content=? " + " WHERE seq=? ";
 
-  private static final String BOARD_DELETE =
-      "DELETE board "
-    + " WHERE seq=?";
+  private static final String BOARD_DELETE = "DELETE board " + " WHERE seq=?";
 
-  private static final String BOARD_GET = 
-      "SELECT * "
-    + "  FROM board"
-    + " WHERE seq=?";
+  private static final String BOARD_GET = "SELECT * " + "  FROM board" + " WHERE seq=?";
 
   private static final String BOARD_LIST_T =
-      "SELECT * "
-    + "  FROM board "
-    + " WHERE title LIKE '%' || ? || '%' "
-    + " ORDER BY seq DESC ";
+      "SELECT * " + "  FROM board " + " WHERE title LIKE '%' || ? || '%' " + " ORDER BY seq DESC ";
 
   private static final String BOARD_LIST_C =
       "SELECT * "
-    + "  FROM board "
-    + " WHERE content LIKE '%' || ? || '%' "
-    + " ORDER BY seq DESC ";
+          + "  FROM board "
+          + " WHERE content LIKE '%' || ? || '%' "
+          + " ORDER BY seq DESC ";
 
   private final JdbcTemplate jdbcTemplate;
 

@@ -1,18 +1,14 @@
 package com.springbook.biz.board.impl;
 
+import com.springbook.biz.board.BoardVO;
+import com.springbook.biz.common.JDBCUtil;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.stereotype.Repository;
-
-import com.springbook.biz.board.BoardVO;
-import com.springbook.biz.common.JDBCUtil;
-
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Repository;
 
 /**
  * DAO (Data Access Object)
@@ -29,35 +25,25 @@ public class BoardDAO {
   private ResultSet rs;
 
   /** SQL 명령어 들... */
-  private final String BOARD_INSERT =
+  private static final String BOARD_INSERT =
       "INSERT INTO BOARD (seq, title, writer, content) VALUES("
           + "(SELECT NVL(MAX(Seq),0)+1 FROM board) "
           + ",?,?,?)";
 
-  private final String BOARD_UPDATE =
-      "UPDATE board "
-    + "   SET title=? "
-    + "     , content=? "
-    + " WHERE seq=? ";
-  private final String BOARD_DELETE = 
-      "DELETE board "
-    + " WHERE seq=?";
+  private static final String BOARD_UPDATE =
+      "UPDATE board " + "   SET title=? " + "     , content=? " + " WHERE seq=? ";
+  private static final String BOARD_DELETE = "DELETE board " + " WHERE seq=?";
 
-  private final String BOARD_GET = 
-      "SELECT * "
-    + "  FROM board" + " WHERE seq=?";
+  private static final String BOARD_GET = "SELECT * " + "  FROM board" + " WHERE seq=?";
 
-  private final String BOARD_LIST_T =
-      "SELECT * "
-    + "  FROM board "
-    + " WHERE title LIKE '%' || ? || '%' "
-    + " ORDER BY seq DESC ";
+  private static final String BOARD_LIST_T =
+      "SELECT * " + "  FROM board " + " WHERE title LIKE '%' || ? || '%' " + " ORDER BY seq DESC ";
 
-  private final String BOARD_LIST_C =
+  private static final String BOARD_LIST_C =
       "SELECT * "
-    + "  FROM board "
-    + " WHERE content LIKE '%' || ? || '%' "
-    + " ORDER BY seq DESC ";
+          + "  FROM board "
+          + " WHERE content LIKE '%' || ? || '%' "
+          + " ORDER BY seq DESC ";
 
   /** CRUD 기능의 메서드 구현 */
   /** 글등록 */
@@ -128,8 +114,9 @@ public class BoardDAO {
         board.setTitle(rs.getString("TITLE"));
         board.setWriter(rs.getString("WRITER"));
         board.setContent(rs.getString("CONTENT"));
-        board.setRegDate(rs.getTimestamp("REGDATE").toLocalDateTime()); // java.sql.Date는 java.util.Date의 서브타입이다.
-        board.setCnt(rs.getInt("CNT"));        
+        board.setRegDate(
+            rs.getTimestamp("REGDATE").toLocalDateTime()); // java.sql.Date는 java.util.Date의 서브타입이다.
+        board.setCnt(rs.getInt("CNT"));
         return board;
       }
 
@@ -164,7 +151,8 @@ public class BoardDAO {
         board.setTitle(rs.getString("TITLE"));
         board.setWriter(rs.getString("WRITER"));
         board.setContent(rs.getString("CONTENT"));
-        board.setRegDate(rs.getTimestamp("REGDATE").toLocalDateTime()); // java.sql.Date는 java.util.Date의 서브타입이다.
+        board.setRegDate(
+            rs.getTimestamp("REGDATE").toLocalDateTime()); // java.sql.Date는 java.util.Date의 서브타입이다.
         board.setCnt(rs.getInt("CNT"));
         boardList.add(board);
       }

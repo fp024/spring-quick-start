@@ -1,14 +1,11 @@
 package com.springbook.biz.board.impl;
 
+import com.springbook.biz.board.BoardVO;
 import java.util.List;
-
+import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import com.springbook.biz.board.BoardVO;
-
-import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Repository

@@ -1,24 +1,20 @@
 package com.springbook.view.user;
 
+import com.google.common.base.Strings;
+import com.springbook.biz.user.UserService;
+import com.springbook.biz.user.UserVO;
 import javax.servlet.http.HttpSession;
-
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.google.common.base.Strings;
-import com.springbook.biz.user.UserService;
-import com.springbook.biz.user.UserVO;
-
-import lombok.RequiredArgsConstructor;
-
 @RequiredArgsConstructor
 @Controller
 public class LoginController {
-  
+
   private final UserService userService;
-  
-  
+
   @RequestMapping(value = "/login.do", method = RequestMethod.GET)
   public String loginView(UserVO vo) {
     vo.setId("test");

@@ -8,13 +8,13 @@ import com.springbook.biz.board.impl.BoardDAO;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.logging.log4j.core.util.FileUtils;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,9 +53,7 @@ public class BoardController {
   }
 
   @GetMapping("/insertBoard")
-  public String insertBoard() {
-    return "boardInsertForm";
-  }
+  public void insertBoard() {}
 
   @PostMapping("/insertBoard")
   public String insertBoard(BoardVO vo) throws IOException {
@@ -64,7 +62,7 @@ public class BoardController {
     logger.info("vo.getUploadFile(): {}", vo.getUploadFile());
     if (vo.getUploadFile() != null && !vo.getUploadFile().isEmpty()) {
       String filename = vo.getUploadFile().getOriginalFilename();
-      FileUtils.mkdir(uploadPath.toFile(), true);
+      Files.createDirectories(uploadPath);
       vo.getUploadFile().transferTo(uploadPath.resolve(filename));
     }
 
@@ -105,12 +103,12 @@ public class BoardController {
 
     List<BoardVO> boardList = boardService.getBoardList(vo);
     model.addAttribute("boardList", boardList);
-    return "boardList";
+    return "getBoardList";
   }
 
   @GetMapping("/getBoard")
   public String getBoard(BoardVO vo, Model model) {
     model.addAttribute("board", boardService.getBoard(vo)); // Model 정보 저장
-    return "board"; // View 이름 리턴
+    return "getBoard"; // View 이름 리턴
   }
 }

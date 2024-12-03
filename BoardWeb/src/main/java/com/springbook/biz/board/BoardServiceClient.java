@@ -1,7 +1,6 @@
 package com.springbook.biz.board;
 
 import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.AbstractApplicationContext;
@@ -25,7 +24,7 @@ public class BoardServiceClient {
     vo.setTitle("임시 제목");
     vo.setWriter("홍길동");
     vo.setContent("임시 내용 ...................");
-    
+
     boardService.insertBoard(vo);
 
     // 4. 글 목록 검색 기능 테스트

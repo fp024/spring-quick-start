@@ -7,7 +7,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.Properties;
-
 import org.apache.ibatis.io.Resources;
 
 /**
@@ -62,8 +61,6 @@ public class JDBCUtil {
         }
       } catch (Exception e) {
         e.printStackTrace();
-      } finally {
-        stmt = null;
       }
     }
 
@@ -74,8 +71,6 @@ public class JDBCUtil {
         }
       } catch (Exception e) {
         e.printStackTrace();
-      } finally {
-        conn = null;
       }
     }
   }
@@ -88,8 +83,6 @@ public class JDBCUtil {
         }
       } catch (Exception e) {
         e.printStackTrace();
-      } finally {
-        rs = null;
       }
     }
 

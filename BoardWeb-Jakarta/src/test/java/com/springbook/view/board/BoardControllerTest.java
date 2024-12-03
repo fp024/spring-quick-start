@@ -23,6 +23,7 @@ import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.servlet.ViewResolver;
 
 @Slf4j
 @SpringJUnitWebConfig(
@@ -36,6 +37,8 @@ class BoardControllerTest {
 
   @Autowired private BoardService service;
 
+  @Autowired private ViewResolver viewResolver;
+
   // @Autowired private WebApplicationContext ctx;
 
   private MockMvc mockMvc;
@@ -46,6 +49,7 @@ class BoardControllerTest {
     this.mockMvc =
         MockMvcBuilders.standaloneSetup(new BoardController(service))
             .setMessageConverters(new GsonHttpMessageConverter(GsonHelper.gson()))
+            .setViewResolvers(viewResolver)
             .build();
   }
 
@@ -126,7 +130,7 @@ class BoardControllerTest {
         .andExpect(status().isOk())
         .andExpect(model().attributeExists("boardList"))
         // 게시물이 존재하지 않아도 반환 List 자체가 null이 아닌 빈 리스트 객체라서 모델이 있는 것을 간주한다.
-        .andExpect(view().name("boardList"))
+        .andExpect(view().name("getBoardList"))
         .andDo(print());
   }
 
@@ -136,7 +140,7 @@ class BoardControllerTest {
         .perform(MockMvcRequestBuilders.get("/getBoard").param("seq", "1"))
         .andExpect(status().isOk())
         // .andExpect(model().attributeExists("board")) // 게시물이 존재하여 값을 받아올 수 있으면 참이된다.
-        .andExpect(view().name("board"))
+        .andExpect(view().name("getBoard"))
         .andDo(print());
   }
 }
