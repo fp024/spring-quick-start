@@ -120,23 +120,23 @@ class BoardControllerTest {
   void getBoardList() throws Exception {
     mockMvc
         .perform(
-            MockMvcRequestBuilders.get("/getBoardList/") //
+            MockMvcRequestBuilders.get("/getBoardList") //
                 .param("searchCondition", "TITLE")
                 .param("searchKeyword", "제목 검색 키워드"))
         .andExpect(status().isOk())
         .andExpect(model().attributeExists("boardList"))
         // 게시물이 존재하지 않아도 반환 List 자체가 null이 아닌 빈 리스트 객체라서 모델이 있는 것을 간주한다.
-        .andExpect(view().name("getBoardList"))
+        .andExpect(view().name("boardList"))
         .andDo(print());
   }
 
   @Test
   void getBoard() throws Exception {
     mockMvc
-        .perform(MockMvcRequestBuilders.get("/getBoard/").param("seq", "1"))
+        .perform(MockMvcRequestBuilders.get("/getBoard").param("seq", "1"))
         .andExpect(status().isOk())
         // .andExpect(model().attributeExists("board")) // 게시물이 존재하여 값을 받아올 수 있으면 참이된다.
-        .andExpect(view().name("getBoard"))
+        .andExpect(view().name("board"))
         .andDo(print());
   }
 }

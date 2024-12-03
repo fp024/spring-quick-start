@@ -53,7 +53,9 @@ public class BoardController {
   }
 
   @GetMapping("/insertBoard")
-  public void insertBoard() {}
+  public String insertBoard() {
+    return "boardInsertForm";
+  }
 
   @PostMapping("/insertBoard")
   public String insertBoard(BoardVO vo) throws IOException {
@@ -103,12 +105,12 @@ public class BoardController {
 
     List<BoardVO> boardList = boardService.getBoardList(vo);
     model.addAttribute("boardList", boardList);
-    return "getBoardList";
+    return "boardList";
   }
 
   @GetMapping("/getBoard")
   public String getBoard(BoardVO vo, Model model) {
     model.addAttribute("board", boardService.getBoard(vo)); // Model 정보 저장
-    return "getBoard"; // View 이름 리턴
+    return "board"; // View 이름 리턴
   }
 }
