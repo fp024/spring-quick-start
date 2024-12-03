@@ -15,11 +15,11 @@
   <packaging>war</packaging>
 
   <properties>
-    <org.springframework-version>6.1.13</org.springframework-version>
-    <hibernate.version>6.4.1.Final</hibernate.version>
-    <mybatis-spring.version>3.0.3</mybatis-spring.version>    
-    <java-time-jsptags.version>2.0.0</java-time-jsptags.version>
-    <jetty.version>12.0.5</jetty.version>
+    <org.springframework-version>6.1.15</org.springframework-version>
+    <hibernate.version>6.5.3.Final</hibernate.version>
+    <mybatis-spring.version>3.0.4</mybatis-spring.version>    
+    <java-time-jsptags.version>2.0.2</java-time-jsptags.version>
+    <jetty.version>12.0.15</jetty.version>
 
     <jakarta.servlet-api.version>6.0.0</jakarta.servlet-api.version>
     <jakarta.servlet.jsp-api.version>3.1.1</jakarta.servlet.jsp-api.version>
@@ -337,9 +337,9 @@
           <target>${java-version}</target>
           <compilerArgs>
             <arg>-Xlint:all</arg>
-            <arg>-Xlint:-processing
-            </arg> <!-- No processor claimed any of these annotations 경고는 노출되지않게 설정 -->
+            <arg>-Xlint:-processing</arg> <!-- No processor claimed any of these annotations 경고는 노출되지않게 설정 -->
           </compilerArgs>
+          <parameters>true</parameters>
           <showWarnings>true</showWarnings>
           <showDeprecation>true</showDeprecation>
         </configuration>
@@ -362,15 +362,6 @@
               <version>${java-version}</version>
             </jdk>
           </toolchains>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-        <version>${exec-maven-plugin.version}</version>
-        <configuration>
-          <mainClass>org.test.int1.Main</mainClass>
         </configuration>
       </plugin>
 

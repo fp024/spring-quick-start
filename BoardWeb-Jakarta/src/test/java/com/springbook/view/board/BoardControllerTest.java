@@ -10,8 +10,9 @@ import com.google.gson.Gson;
 import com.springbook.biz.board.BoardService;
 import com.springbook.biz.board.BoardVO;
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
 import org.fp024.util.GsonHelper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,6 +24,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+@Slf4j
 @SpringJUnitWebConfig(
     locations = {
       "classpath:applicationContext.xml", //
@@ -75,21 +77,26 @@ class BoardControllerTest {
         .andDo(print());
   }
 
+  private Integer insertBoardData() {
+    BoardVO boardVO = new BoardVO();
+    boardVO.setTitle("제목");
+    boardVO.setWriter("작성자");
+    boardVO.setContent("본문");
+    service.insertBoard(boardVO);
+    return boardVO.getSeq();
+  }
+
   @Test
   void updateBoard() throws Exception {
-    insertBoard();
-
-    BoardVO boardVO = new BoardVO();
-    boardVO.setSeq(1);
-    boardVO.setTitle("수정 제목");
-    boardVO.setWriter("수정 작성자");
-    boardVO.setContent("수정 본문");
-    boardVO.setRegDate(LocalDateTime.now());
-
+    Integer seq = insertBoardData();
+    List<BoardVO> boards = service.getBoardList(new BoardVO());
+    logger.info("### {}", boards);
     mockMvc
         .perform(
             MockMvcRequestBuilders.post("/updateBoard") //
-                .sessionAttr("board", boardVO))
+                .param("seq", Integer.toString(seq))
+                .param("title", "수정 제목")
+                .param("content", "수정 본문"))
         .andExpect(status().isFound())
         .andExpect(redirectedUrl("getBoardList"))
         .andDo(print());
@@ -98,12 +105,12 @@ class BoardControllerTest {
   @Test
   void deleteBoard() throws Exception {
     // 엔티티 조회후 삭제를 해서 삭제할 데이터가 반드시 있어야한다.
-    insertBoard();
+    Integer seq = insertBoardData();
 
     mockMvc
         .perform(
             MockMvcRequestBuilders.post("/deleteBoard") //
-                .param("seq", "1"))
+                .param("seq", Integer.toString(seq)))
         .andExpect(status().isFound())
         .andExpect(redirectedUrl("getBoardList"))
         .andDo(print());

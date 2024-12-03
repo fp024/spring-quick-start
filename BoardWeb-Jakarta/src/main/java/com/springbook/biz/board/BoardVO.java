@@ -1,7 +1,5 @@
 package com.springbook.biz.board;
 
-import java.time.LocalDateTime;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,12 +10,11 @@ import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlAttribute;
 import jakarta.xml.bind.annotation.XmlTransient;
-
-import org.springframework.web.multipart.MultipartFile;
-
+import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * VO(Value Object)
@@ -31,7 +28,7 @@ import lombok.ToString;
 @Entity
 @Table(name = "board")
 public class BoardVO {
-  @XmlAttribute @Id @GeneratedValue private int seq;
+  @XmlAttribute @Id @GeneratedValue private Integer seq;
 
   private String title;
 

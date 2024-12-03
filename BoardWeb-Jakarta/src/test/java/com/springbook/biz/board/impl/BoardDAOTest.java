@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 @SpringJUnitConfig(locations = "classpath:applicationContext.xml")
-public class BoardDAOTest {
+class BoardDAOTest {
   @Test
   void testDeleteBoard() {}
 

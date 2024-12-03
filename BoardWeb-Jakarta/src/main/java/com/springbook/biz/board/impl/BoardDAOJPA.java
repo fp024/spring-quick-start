@@ -1,16 +1,12 @@
 package com.springbook.biz.board.impl;
 
-import java.util.List;
-
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-
-import org.springframework.stereotype.Repository;
-
 import com.google.common.base.Strings;
 import com.springbook.biz.board.BoardVO;
-
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Repository;
 
 @Slf4j
 @Repository
@@ -22,10 +18,7 @@ public class BoardDAOJPA {
     em.persist(vo);
   }
 
-  /**
-   * 책에서도 다른 처리 없이 merge만 하는데...
-   * 일단 한번은 읽었던 상태라 이런 것인지.. 잘되긴 된다.
-   */
+  /** 책에서도 다른 처리 없이 merge만 하는데... 일단 한번은 읽었던 상태라 이런 것인지.. 잘되긴 된다. */
   public void updateBoard(BoardVO vo) {
     logger.info("===> JPA로 updateBoard() 기능처리");
     em.merge(vo);
@@ -42,7 +35,7 @@ public class BoardDAOJPA {
     return em.find(BoardVO.class, vo.getSeq());
   }
 
-  /** TODO: JPQL 이나 QueryDSL 따로 공부할 때, 바꿔야겠다. */
+  /* JPQL 이나 QueryDSL 따로 공부할 때, 바꿔야겠다. */
   public List<BoardVO> getBoardList(BoardVO vo) {
     logger.info("===> JPA로 getBoardList() 기능처리");
 

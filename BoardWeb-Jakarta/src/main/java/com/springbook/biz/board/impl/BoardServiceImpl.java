@@ -1,17 +1,16 @@
 package com.springbook.biz.board.impl;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.springbook.biz.board.BoardService;
 import com.springbook.biz.board.BoardVO;
+import java.time.LocalDateTime;
+import java.util.List;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
 
 @Service("boardService")
+@RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService {
-  @Autowired private BoardDAOJPA boardDAO;
+  private final BoardDAOJPA boardDAO;
 
   @Override
   public void insertBoard(BoardVO vo) {

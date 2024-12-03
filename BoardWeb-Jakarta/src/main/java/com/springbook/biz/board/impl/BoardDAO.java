@@ -25,21 +25,22 @@ public class BoardDAO {
   private ResultSet rs;
 
   /** SQL 명령어 들... */
-  private final String BOARD_INSERT =
+  private static final String BOARD_INSERT =
       "INSERT INTO BOARD (seq, title, writer, content) VALUES("
           + "(SELECT NVL(MAX(Seq),0)+1 FROM board) "
           + ",?,?,?)";
 
-  private final String BOARD_UPDATE =
+  private static final String BOARD_UPDATE =
       "UPDATE board " + "   SET title=? " + "     , content=? " + " WHERE seq=? ";
-  private final String BOARD_DELETE = "DELETE board " + " WHERE seq=?";
 
-  private final String BOARD_GET = "SELECT * " + "  FROM board" + " WHERE seq=?";
+  private static final String BOARD_DELETE = "DELETE board " + " WHERE seq=?";
 
-  private final String BOARD_LIST_T =
+  private static final String BOARD_GET = "SELECT * " + "  FROM board" + " WHERE seq=?";
+
+  private static final String BOARD_LIST_T =
       "SELECT * " + "  FROM board " + " WHERE title LIKE '%' || ? || '%' " + " ORDER BY seq DESC ";
 
-  private final String BOARD_LIST_C =
+  private static final String BOARD_LIST_C =
       "SELECT * "
           + "  FROM board "
           + " WHERE content LIKE '%' || ? || '%' "

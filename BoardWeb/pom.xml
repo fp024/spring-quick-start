@@ -282,15 +282,6 @@
         </configuration>
       </plugin>
 
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>exec-maven-plugin</artifactId>
-        <version>${exec-maven-plugin.version}</version>
-        <configuration>
-          <mainClass>org.test.int1.Main</mainClass>
-        </configuration>
-      </plugin>
-
       <!-- Jetty 서버 구동 -->
       <plugin>
         <!-- https://www.eclipse.org/jetty/documentation/jetty-10/programming-guide/index.html#jetty-maven-plugin -->

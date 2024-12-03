@@ -15,12 +15,12 @@ import org.springframework.stereotype.Repository;
 @Repository("boardDAOSpring")
 public class BoardDAOSpring {
   /** SQL 명령어 들... */
-  @SuppressWarnings("unused")
   private static final String BOARD_INSERT =
       "INSERT INTO BOARD (seq, title, writer, content) VALUES("
           + "(SELECT NVL(MAX(Seq),0)+1 FROM board) "
           + ",?,?,?)";
 
+  @SuppressWarnings("unused")
   private static final String BOARD_INSERT2 =
       "INSERT INTO BOARD (seq, title, writer, content) VALUES(" + "?" + ",?,?,?)";
 

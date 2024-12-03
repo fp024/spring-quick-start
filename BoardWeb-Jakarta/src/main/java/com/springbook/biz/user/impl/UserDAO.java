@@ -1,17 +1,16 @@
 package com.springbook.biz.user.impl;
 
+import com.springbook.biz.common.JDBCUtil;
+import com.springbook.biz.user.UserVO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Repository;
 
-import com.springbook.biz.common.JDBCUtil;
-import com.springbook.biz.user.UserVO;
-
-import lombok.extern.slf4j.Slf4j;
-
-/** @author fp024 */
+/**
+ * @author fp024
+ */
 @Slf4j
 @Repository
 public class UserDAO {

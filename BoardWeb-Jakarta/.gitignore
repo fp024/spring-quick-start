@@ -35,7 +35,8 @@ build/
 !**/src/test/**/build/
 
 ### VS Code ###
-.vscode/
+.vscode/*
+!vscode/settings.json
 
 
 ### Jetty 12가 루트에 jsp 경로를 만들어서 거기서 컴파일을 한다? ###

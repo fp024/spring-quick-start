@@ -5,13 +5,16 @@ import com.springbook.biz.board.BoardListVO;
 import com.springbook.biz.board.BoardService;
 import com.springbook.biz.board.BoardVO;
 import com.springbook.biz.board.impl.BoardDAO;
-import java.io.File;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.logging.log4j.core.util.FileUtils;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,14 +23,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Slf4j
 @RequiredArgsConstructor
 @Controller
-@SessionAttributes("board")
 public class BoardController {
   private final BoardService boardService;
+
+  private final Path uploadPath = Path.of("C:/upload/BoardWeb/");
 
   @RequestMapping(value = "/dataTransform", produces = MediaType.APPLICATION_JSON_VALUE)
   public @ResponseBody BoardListVO dataTransform(BoardVO vo) {
@@ -59,19 +62,24 @@ public class BoardController {
     logger.info("vo.getUploadFile(): {}", vo.getUploadFile());
     if (vo.getUploadFile() != null && !vo.getUploadFile().isEmpty()) {
       String filename = vo.getUploadFile().getOriginalFilename();
-      vo.getUploadFile().transferTo(new File("C:/upload/BoardWeb/" + filename));
-      // 메서드가 끝나면 자동으로 업로드된 파일이 정리됨...
-      // 다시 다른 처리를 해서 이름을 바꾸거나 다른 곳으로 올리라는 의미같다.
-      // 웹서버에 파일을 쌓아두지 말라는 건가?
+      FileUtils.mkdir(uploadPath.toFile(), true);
+      vo.getUploadFile().transferTo(uploadPath.resolve(filename));
     }
 
     return "redirect:getBoardList";
   }
 
   @PostMapping("/updateBoard")
-  public String updateBoard(@ModelAttribute("board") BoardVO vo, BoardDAO boardDAO) {
+  public String updateBoard(
+      @ModelAttribute("board") BoardVO vo, BoardDAO boardDAO, HttpServletResponse response) {
     logger.warn("업데이트할 board 정보: {}", vo);
-    boardService.updateBoard(vo);
+    BoardVO board = boardService.getBoard(vo);
+    if (board == null) {
+      throw new EntityNotFoundException();
+    }
+    board.setTitle(vo.getTitle());
+    board.setContent(vo.getContent());
+    boardService.updateBoard(board);
     return "redirect:getBoardList";
   }
 

@@ -1,13 +1,11 @@
 package com.springbook.biz.common;
 
+import com.springbook.biz.user.UserVO;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.stereotype.Service;
-
-import com.springbook.biz.user.UserVO;
-
-import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
