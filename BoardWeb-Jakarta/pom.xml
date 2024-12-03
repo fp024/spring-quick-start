@@ -15,8 +15,8 @@
   <packaging>war</packaging>
 
   <properties>
-    <org.springframework-version>6.1.15</org.springframework-version>
-    <hibernate.version>6.5.3.Final</hibernate.version>
+    <org.springframework-version>6.2.0</org.springframework-version>
+    <hibernate.version>6.6.3.Final</hibernate.version>
     <mybatis-spring.version>3.0.4</mybatis-spring.version>    
     <java-time-jsptags.version>2.0.2</java-time-jsptags.version>
     <jetty.version>12.0.15</jetty.version>
