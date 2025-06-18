@@ -285,8 +285,8 @@
       <!-- Jetty 서버 구동 -->
       <plugin>
         <!-- https://www.eclipse.org/jetty/documentation/jetty-10/programming-guide/index.html#jetty-maven-plugin -->
-        <groupId>org.eclipse.jetty</groupId>
-        <artifactId>jetty-maven-plugin</artifactId>
+        <groupId>org.eclipse.jetty.ee8</groupId>
+        <artifactId>jetty-ee8-maven-plugin</artifactId>
         <version>${jetty.version}</version>
         <configuration>
           <webApp>
@@ -318,19 +318,6 @@
             </scanTargetPattern>
           </scanTargetPatterns>
         </configuration>
-        <dependencies>
-          <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>apache-jstl</artifactId>
-            <version>${jetty.version}</version>
-            <exclusions>
-              <exclusion>
-                <groupId>org.apache.taglibs</groupId>
-                <artifactId>taglibs-standard-impl</artifactId>
-              </exclusion>
-            </exclusions>
-          </dependency>
-        </dependencies>
       </plugin>
     </plugins>
 
