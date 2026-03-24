@@ -46,19 +46,28 @@
     <!-- Maven 플러그인 버전 모음 -->
     <maven-compiler-plugin.version>3.15.0</maven-compiler-plugin.version>
     <maven-surefire-plugin.version>3.5.5</maven-surefire-plugin.version>
-    <maven-failsafe-plugin.version>3.5.5</maven-failsafe-plugin.version>
-    <maven-clean-plugin.version>3.5.0</maven-clean-plugin.version>
-    <maven-resources-plugin.version>3.5.0</maven-resources-plugin.version>
-    <maven-jar-plugin.version>3.5.0</maven-jar-plugin.version>
     <maven-toolchains-plugin.version>3.2.0</maven-toolchains-plugin.version>
-    <maven-deploy-plugin.version>3.1.4</maven-deploy-plugin.version>
-
-    <maven-install-plugin.version>3.1.4</maven-install-plugin.version>
-
-    <maven-site-plugin.version>3.21.0</maven-site-plugin.version>
-    <maven-project-info-reports-plugin.version>3.9.0</maven-project-info-reports-plugin.version>
 
   </properties>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${maven-compiler-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${maven-surefire-plugin.version}</version>
+        </plugin>
+        <plugin>
+          <artifactId>maven-toolchains-plugin</artifactId>
+          <version>${maven-toolchains-plugin.version}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
 
   <modules>
     <!-- MyBatis 테스트 프로젝트 -->
