@@ -7,7 +7,7 @@
   <context id="myBatis3Simple" targetRuntime="MyBatis3Simple">
     <!--
       XML Mapper가 자동으로 합쳐지는 것을 방지:
-      overwrite를 true로 해도 append가 되는 현상이 있어서 이 플러그인이 필요한다.
+      overwrite를 true로 해도 append가 되는 현상이 있어서 이 플러그인이 필요하다.
      -->
     <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin"/>
 
