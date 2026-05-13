@@ -7,7 +7,7 @@
 ### 도서 판매처
 
 * yes24
-  * http://www.yes24.com/Product/Goods/29173715
+  * https://www.yes24.com/product/goods/29173715
 
 * 교보문고
   * https://www.kyobobook.co.kr/product/detailViewKor.laf?barcode=9791186710074
