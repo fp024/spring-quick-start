@@ -24,7 +24,7 @@
   </environments>
 
   <mappers>
-    <mapper resource="mappings/generated/BoardDAO.xml"/>
+    <mapper resource="mappings/generated/BoardMapper.xml"/>
     <mapper resource="mappings/BoardDAO.xml"/>
   </mappers>
 

@@ -2,29 +2,31 @@ package org.fp024.mybatistest.board.util;
 
 import java.io.Reader;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+@Slf4j
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class SqlSessionFactoryBean {
-	private SqlSessionFactoryBean() {
-		// 생성자로 객체 생성 금지
-	}
-	private static SqlSessionFactory sessionFactory = null;
-	
-	static {
-		try {
-			if (sessionFactory == null) {
-				Reader reader = Resources.getResourceAsReader("sql-map-config.xml");
-				sessionFactory = new SqlSessionFactoryBuilder().build(reader);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+  private static SqlSessionFactory sessionFactory;
 
-	public static SqlSession getSqlSessionInstance() {
-		return sessionFactory.openSession();	
-	}
+  // 💡 static 블록에서 클래스 초기화 시 한 번 생성되므로, 정상 초기화 후에는 null 검사가 필요 없음
+  static {
+    try {
+      Reader reader = Resources.getResourceAsReader("sql-map-config.xml");
+      sessionFactory = new SqlSessionFactoryBuilder().build(reader);
+
+    } catch (Exception e) {
+      logger.error("Failed to initialize SqlSessionFactory", e);
+    }
+  }
+
+  public static SqlSession getSqlSessionInstance() {
+    return sessionFactory.openSession();
+  }
 }

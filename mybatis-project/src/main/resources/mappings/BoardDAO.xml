@@ -3,15 +3,15 @@
 <!-- myBatis Generator 자동생성 메퍼 XML 을 책 예제에 맞게 수정 -->
 <mapper namespace="org.fp024.mybatistest.board.impl.BoardDAO">
   <sql id="allColumns">
-    seq
-    , title
+       seq
+     , title
      , writer
      , content
      , regdate
      , cnt
   </sql>
 
-  <select id="getBoardList" resultMap="org.fp024.mybatistest.board.impl.generated.BoardDAO.BaseResultMap">
+  <select id="getBoardList" resultMap="org.fp024.mybatistest.board.impl.generated.BoardMapper.BaseResultMap">
     SELECT
     <include refid="allColumns"/>
     FROM board

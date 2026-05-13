@@ -48,7 +48,7 @@
     <table
         tableName="BOARD"
         domainObjectName="BoardVO"
-        mapperName="BoardDAO"
+        mapperName="BoardMapper"
     >
       <generatedKey column="seq" identity="false"
                     sqlStatement="SELECT (NVL(MAX(seq), 0) + 1) AS seq FROM board"/>

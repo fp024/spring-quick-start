@@ -10,7 +10,7 @@ import org.fp024.mybatistest.board.util.SqlSessionFactoryBean;
 /** myBatis Generator로 자동생성된 메퍼 인터페이스를 책 예제에 맞게 클래스로 수정. */
 public class BoardDAO {
   private static final String NAMESPACE_AUTO_GENERATED_PREFIX =
-      namespace(org.fp024.mybatistest.board.impl.generated.BoardDAO.class);
+      namespace(org.fp024.mybatistest.board.impl.generated.BoardMapper.class);
   private static final String NAMESPACE_PREFIX = namespace(BoardDAO.class);
 
   private static String namespace(Class<?> mapperClass) {
