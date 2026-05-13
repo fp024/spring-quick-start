@@ -111,6 +111,39 @@
           </toolchains>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.mybatis.generator</groupId>
+        <artifactId>mybatis-generator-maven-plugin</artifactId>
+        <version>${mybatis-generator-maven-plugin.version}</version>
+        <!-- 아래내용을 활성화하면 compile관련 페이즈를 실행할 때도 항상 먼저 실행이된다. -->
+        <!-- 나는 필요할때만 mybatis-generator:generate Goal로 쓰기로하자 -->
+        <!--
+        <executions>
+            <execution>
+                <id>Generate MyBatis Artifacts</id>
+                <goals>
+                    <goal>generate</goal>
+                </goals>
+            </execution>
+        </executions> 
+        -->
+        <configuration>
+          <!-- https://mybatis.org/generator/running/runningWithMaven.html -->
+          <!-- Maven Goal 실행: mvn mybatis-generator:generate -->
+          <!-- <configurationFile>${project.basedir}/src/test/resources/generatorConfig.xml</configurationFile> -->
+          <configurationFile>${project.basedir}/generatorConfig.xml</configurationFile>
+          <detail>true</detail>
+          <verbose>true</verbose>
+          <overwrite>true</overwrite>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
     </plugins>
   </build>
 </project>

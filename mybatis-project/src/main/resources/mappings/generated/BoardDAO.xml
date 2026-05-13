@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.fp024.mybatistest.board.impl.generated.BoardDAO">
+  <resultMap id="BaseResultMap" type="org.fp024.mybatistest.board.generated.BoardVO">
+    <id column="SEQ" jdbcType="INTEGER" property="seq" />
+    <result column="CNT" jdbcType="INTEGER" property="cnt" />
+    <result column="REGDATE" jdbcType="TIMESTAMP" property="regDate" />
+    <result column="CONTENT" jdbcType="VARCHAR" property="content" />
+    <result column="TITLE" jdbcType="VARCHAR" property="title" />
+    <result column="WRITER" jdbcType="VARCHAR" property="writer" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from BOARD
+    where SEQ = #{seq,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="org.fp024.mybatistest.board.generated.BoardVO">
+    <selectKey keyProperty="seq" order="BEFORE" resultType="java.lang.Integer">
+      SELECT (NVL(MAX(seq), 0) + 1) AS seq FROM board
+    </selectKey>
+    insert into BOARD (SEQ, CNT, REGDATE, 
+      CONTENT, TITLE, WRITER
+      )
+    values (#{seq,jdbcType=INTEGER}, #{cnt,jdbcType=INTEGER}, #{regDate,jdbcType=TIMESTAMP}, 
+      #{content,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{writer,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="org.fp024.mybatistest.board.generated.BoardVO">
+    update BOARD
+    set CNT = #{cnt,jdbcType=INTEGER},
+      REGDATE = #{regDate,jdbcType=TIMESTAMP},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      TITLE = #{title,jdbcType=VARCHAR},
+      WRITER = #{writer,jdbcType=VARCHAR}
+    where SEQ = #{seq,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select SEQ, CNT, REGDATE, CONTENT, TITLE, WRITER
+    from BOARD
+    where SEQ = #{seq,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select SEQ, CNT, REGDATE, CONTENT, TITLE, WRITER
+    from BOARD
+  </select>
+</mapper>

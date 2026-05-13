@@ -1,52 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+    "https://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
 
 
-	<context id="myBatis3Simple" targetRuntime="MyBatis3Simple" >
-		<!-- 자동생성 주석 금지  -->
-		<commentGenerator>
-			<property name="suppressAllComments" value="true" />
-		</commentGenerator>
-	
-		<jdbcConnection connectionURL="jdbc:h2:tcp://localhost/~/spring_quick_start"
-			driverClass="org.h2.Driver"
-			password=""
-			userId="sa" 
-		/>
+  <context id="myBatis3Simple" targetRuntime="MyBatis3Simple">
+    <!--
+      XML Mapper가 자동으로 합쳐지는 것을 방지:
+      overwrite를 true로 해도 append가 되는 현상이 있어서 이 플러그인이 필요한다.
+     -->
+    <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin"/>
 
-		<!-- Java 도메인 모델 생성 -->
-		<javaModelGenerator
-			targetPackage="org.fp024.mybatistest.board" 
-			targetProject="mybatis-project/src/main/java"	
-		>
-		</javaModelGenerator>
+    <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
 
-		<!-- 메퍼 XML 생성 -->
-		<sqlMapGenerator 
-			targetPackage="mappings"
-			targetProject="mybatis-project/src/main/resources" 
-		/>
+    <!-- 자동생성 주석 금지  -->
+    <commentGenerator>
+      <property name="suppressAllComments" value="true"/>
+      <property name="useLegacyGeneratedAnnotation" value="true"/>
+    </commentGenerator>
 
-		<!-- 메퍼 인터페이스 (레파지토리 인터페이스 )-->
-		<javaClientGenerator type="XMLMAPPER" 
-			targetPackage="org.fp024.mybatistest.board.impl" 
-			targetProject="mybatis-project/src/main/java"
-		/>
+    <jdbcConnection connectionURL="jdbc:h2:tcp://h2db-host/~/h2db-data/spring-quick-start;TRACE_LEVEL_SYSTEM_OUT=0"
+                    driverClass="org.h2.Driver"
+                    password="sa"
+                    userId="sa"
+    />
 
-		<!-- 타켓 테이블  -->
-		<table 
-			tableName="BOARD"
-			domainObjectName="BoardVO"
-			mapperName="BoardDAO"  
-		>
-			<columnOverride column="REGDATE" property="regDate" />
-			
-			
-		</table>
+    <!-- Java 도메인 모델 생성 -->
+    <modelGenerator
+        targetPackage="org.fp024.mybatistest.board.generated"
+        targetProject="src/main/java"
+    >
+    </modelGenerator>
+
+    <!-- 메퍼 XML 생성 -->
+    <sqlMapGenerator
+        targetPackage="mappings.generated"
+        targetProject="src/main/resources"
+    />
+
+    <!-- 메퍼 인터페이스 (레파지토리 인터페이스 )-->
+    <clientGenerator type="XMLMAPPER"
+                         targetPackage="org.fp024.mybatistest.board.impl.generated"
+                         targetProject="src/main/java"
+    />
+
+    <!-- 타켓 테이블  -->
+    <table
+        tableName="BOARD"
+        domainObjectName="BoardVO"
+        mapperName="BoardDAO"
+    >
+      <generatedKey column="seq" identity="false"
+                    sqlStatement="SELECT (NVL(MAX(seq), 0) + 1) AS seq FROM board"/>
+      <columnOverride column="CNT" javaType="int"/>
+      <columnOverride column="REGDATE" property="regDate"/>
+    </table>
+  </context>
 
 
-	</context>
-	
-	
 </generatorConfiguration>
