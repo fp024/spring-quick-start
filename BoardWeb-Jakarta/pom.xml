@@ -15,8 +15,8 @@
   <packaging>war</packaging>
 
   <properties>
-    <org.springframework-version>6.2.18</org.springframework-version>
-    <hibernate.version>6.6.50.Final</hibernate.version> <!-- 6.6.x 버전은 Spring 6.x 대응 -->
+    <org.springframework-version>6.2.19</org.springframework-version>
+    <hibernate.version>6.6.54.Final</hibernate.version> <!-- 6.6.x 버전은 Spring 6.x 대응 -->
     <mybatis-spring.version>3.0.5</mybatis-spring.version> <!-- 3.0.x 버전은 Spring 6.x 대응 -->
     <java-time-jsptags.version>2.0.2</java-time-jsptags.version>
 
