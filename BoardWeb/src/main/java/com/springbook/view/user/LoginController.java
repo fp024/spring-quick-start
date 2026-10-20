@@ -9,20 +9,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+@RequestMapping("/login.do")
 @RequiredArgsConstructor
 @Controller
 public class LoginController {
 
   private final UserService userService;
 
-  @RequestMapping(value = "/login.do", method = RequestMethod.GET)
+  @RequestMapping(method = RequestMethod.GET)
   public String loginView(UserVO vo) {
     vo.setId("test");
     vo.setPassword("test123");
     return "login.jsp";
   }
 
-  @RequestMapping(value = "/login.do", method = RequestMethod.POST)
+  @RequestMapping(method = RequestMethod.POST)
   public String login(UserVO vo, HttpSession session) {
     if (Strings.isNullOrEmpty(vo.getId())) {
       throw new IllegalArgumentException("아이디는 반드시 입력해야합니다.");
